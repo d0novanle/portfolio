@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Donovan Le — Portfolio Preview</title>
+<style>
+  /* ============================================================
+     FONTS — Blue Note / mid-century: condensed display caps +
+     refined serif for liner-note body text
+     ============================================================ */
+  @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Spectral:ital,wght@0,400;0,500;0,600;1,400&display=swap');
+
+  :root{
+    --elac-orange:#E0792B;
+    --bn-red:#C2391F;
+    --cream:#F4ECDC;
+    --cream-deep:#EBE0CA;
+    --ink:#1A1714;
+    --ink-soft:#4A433B;
+    --green-splash:#14402C;
+    --paper-line:rgba(26,23,20,.12);
+    --display:'Oswald',sans-serif;
+    --serif:'Spectral',Georgia,serif;
+    --ease:cubic-bezier(.22,.61,.36,1);
+  }
+
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  @media (prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto}
+    *{animation-duration:.001ms !important;transition-duration:.001ms !important}
+  }
+
+  body{
+    font-family:var(--serif);
+    background:var(--cream);
+    color:var(--ink);
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  /* paper grain */
+  body::before{
+    content:"";position:fixed;inset:0;z-index:9999;pointer-events:none;opacity:.04;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  .skip-link{position:absolute;left:-999px;top:0;background:var(--ink);color:var(--cream);
+    padding:.6rem 1rem;z-index:10000;font-family:var(--display);text-transform:uppercase;letter-spacing:.05em}
+  .skip-link:focus{left:.5rem;top:.5rem}
+
+  :focus-visible{outline:3px solid var(--elac-orange);outline-offset:3px;border-radius:2px}
+
+  /* ============================================================
+     TOP BAR
+     ============================================================ */
+  header.bar{
+    position:sticky;top:0;z-index:200;
+    display:flex;align-items:center;justify-content:space-between;
+    padding:1.1rem clamp(1.2rem,4vw,3rem);
+    background:rgba(244,236,220,.86);backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--paper-line);
+  }
+  .brand{font-family:var(--display);font-weight:700;font-size:1.35rem;letter-spacing:.02em;text-transform:uppercase}
+  nav.top a{font-family:var(--display);text-transform:uppercase;letter-spacing:.06em;font-size:.9rem;
+    color:var(--ink-soft);text-decoration:none;margin-left:1.6rem;font-weight:500;transition:color .2s}
+  nav.top a:hover{color:var(--bn-red)}
+
+  /* ============================================================
+     VIEW SWITCHER (preview only, not in final build)
+     ============================================================ */
+
+  .view{display:none}
+  .view.active{display:block;animation:fade .5s var(--ease)}
+  @keyframes fade{from{opacity:0}to{opacity:1}}
+
+  /* ============================================================
+     LANDING
+     ============================================================ */
+  .landing-hero{padding:clamp(1.5rem,3.5vw,2.8rem) clamp(1.5rem,4vw,3.5rem) 1rem;text-align:left;
+    display:flex;flex-direction:column;align-items:flex-start;max-width:1500px;margin:0 auto}
+  .landing-hero h1{font-family:var(--serif);font-weight:400;font-size:clamp(1.3rem,2.6vw,2rem);
+    line-height:1.32;max-width:62ch;letter-spacing:-.005em}
+  .landing-hero h1 .hl-green{color:var(--green-splash);font-weight:600}
+  .landing-hero h1 .hl-purple{color:#6D3DBE;font-weight:600}
+  .landing-hero h1 .hl-blue{color:#1F5FA8;font-weight:600}
+  .landing-hero h1 .hl-red{color:var(--bn-red);font-weight:600}
+  .landing-hero .browse{font-family:var(--display);text-transform:uppercase;letter-spacing:.08em;
+    font-weight:600;font-size:clamp(1rem,1.6vw,1.25rem);margin-top:2.6rem;color:var(--ink-soft)}
+  .landing-hero .eyebrow{font-family:var(--display);text-transform:uppercase;letter-spacing:.18em;
+    font-size:.78rem;color:var(--elac-orange);margin-bottom:.8rem;font-weight:600}
+
+  .crate{
+    display:grid;grid-template-columns:repeat(3,1fr);
+    gap:clamp(2rem,4vw,3rem) clamp(4rem,8vw,7rem);
+    padding:clamp(1rem,2.5vw,2rem) clamp(1.5rem,4vw,3.5rem) 5rem;
+    max-width:1500px;margin:0 auto;
+    justify-items:center;
+  }
+  .album{max-width:340px}
+  @media(max-width:880px){.crate{grid-template-columns:repeat(2,1fr)}}
+  @media(max-width:560px){.crate{grid-template-columns:1fr;max-width:420px}}
+
+  /* --- album card: static sleeve, vinyl peeks out on hover --- */
+  .album{
+    position:relative;cursor:pointer;background:none;border:none;padding:0;
+    text-align:left;width:100%;display:block;
+  }
+  .sleeve-wrap{position:relative;aspect-ratio:1/1;width:100%}
+
+  /* the vinyl disc sits BEHIND the sleeve and slides right on hover */
+  .vinyl{
+    position:absolute;top:2.5%;left:0;width:96%;height:95%;border-radius:50%;
+    background:
+      radial-gradient(circle at center,
+        #2a2622 0 9%,
+        var(--label-color,#C2391F) 9% 40%,
+        #2a2622 40% 41.5%,
+        #1c1814 41.5% 44%,
+        #15120f 44% 100%);
+    box-shadow:0 8px 22px rgba(0,0,0,.4), inset 0 0 30px rgba(0,0,0,.5);
+    transform:translateX(8%);
+    transition:transform .55s var(--ease);
+    z-index:1;
+  }
+  /* concentric grooves — masked to the black vinyl only (outside the label) */
+  .vinyl::before{
+    content:"";position:absolute;inset:0;border-radius:50%;
+    background:repeating-radial-gradient(circle at center,
+      rgba(255,255,255,.07) 0 1px,
+      transparent 1px 6px);
+    -webkit-mask:radial-gradient(circle at center, transparent 0 44%, #000 44% 100%);
+            mask:radial-gradient(circle at center, transparent 0 44%, #000 44% 100%);
+  }
+  .vinyl::after{ /* spindle hole */
+    content:"";position:absolute;top:50%;left:50%;width:3.5%;height:3.5%;
+    background:var(--cream);border-radius:50%;transform:translate(-50%,-50%);
+    box-shadow:0 0 0 2px rgba(0,0,0,.3)}
+  .sleeve{
+    position:absolute;inset:0;z-index:2;border-radius:3px;overflow:hidden;
+    box-shadow:0 10px 30px rgba(0,0,0,.28),0 2px 6px rgba(0,0,0,.2);
+    background:var(--cream-deep);
+    transition:box-shadow .4s var(--ease);
+  }
+  .sleeve svg{display:block;width:100%;height:100%}
+
+  .album:hover .vinyl,
+  .album:focus-visible .vinyl{transform:translateX(40%)}
+  .album:hover .sleeve,
+  .album:focus-visible .sleeve{box-shadow:0 18px 44px rgba(0,0,0,.34),0 3px 8px rgba(0,0,0,.24)}
+
+  .album-meta{margin-top:1rem;display:flex;justify-content:space-between;align-items:baseline;gap:1rem}
+  .album-title{font-family:var(--display);text-transform:uppercase;font-weight:600;font-size:1.05rem;
+    letter-spacing:.02em;line-height:1.1}
+  .album-cat{font-family:var(--display);font-size:.72rem;letter-spacing:.1em;color:var(--ink-soft);
+    white-space:nowrap}
+  .album-role{font-size:.86rem;color:var(--ink-soft);font-style:italic;margin-top:.15rem}
+  .album-pitch{font-size:.92rem;color:var(--ink);margin-top:.7rem;line-height:1.45;max-width:38ch}
+
+  /* ============================================================
+     CASE STUDY PAGE
+     ============================================================ */
+  /* image band on top */
+  .cs-splash{
+    position:relative;width:100%;background:var(--green-splash);overflow:hidden;
+  }
+  .cs-splash .splash-bg{display:block;width:100%}
+  .cs-splash .splash-bg img{width:100%;height:auto;display:block;
+    max-height:78vh;object-fit:cover;object-position:center}
+  .cs-splash .back{position:absolute;top:clamp(1rem,3vw,2rem);left:clamp(1.2rem,4vw,3rem);z-index:3;
+    font-family:var(--display);text-transform:uppercase;letter-spacing:.1em;font-size:.8rem;
+    color:var(--cream);text-decoration:none;opacity:.9;display:inline-flex;gap:.5rem;align-items:center;
+    background:rgba(13,40,28,.55);padding:.5rem .9rem;border-radius:20px;backdrop-filter:blur(4px)}
+  .cs-splash .back:hover{opacity:1}
+  /* title + tagline block below the image (Brandon-style) */
+  .cs-intro{max-width:1400px;margin:0 auto;
+    padding:clamp(2.5rem,6vw,4.5rem) clamp(1.2rem,5vw,4rem) clamp(1rem,3vw,2rem)}
+  .cs-intro h1{font-family:var(--display);font-weight:700;text-transform:uppercase;
+    font-size:clamp(2.8rem,8vw,5.5rem);line-height:.92;letter-spacing:-.01em;color:var(--ink);margin-bottom:1rem}
+  .cs-intro p.tagline{font-family:var(--serif);font-size:clamp(1.2rem,2.2vw,1.7rem);
+    color:var(--ink-soft);line-height:1.4;max-width:42ch;font-weight:500}
+
+  /* --- two-column body --- */
+  .cs-body{display:grid;grid-template-columns:clamp(220px,24vw,300px) 1fr;
+    gap:clamp(2rem,5vw,5rem);
+    padding:clamp(2.5rem,6vw,5rem) clamp(1.2rem,5vw,4rem);max-width:1400px;margin:0 auto;
+    align-items:start}
+
+  /* sticky left nav */
+  .cs-nav{position:sticky;top:90px;align-self:start}
+  .turntable-box{margin-bottom:2.2rem}
+  .turntable{width:100%;max-width:230px}
+  .nav-list{list-style:none;border-top:1px solid var(--paper-line);padding-top:1.4rem}
+  .nav-list li{margin:0}
+  .nav-list a{
+    display:flex;align-items:center;gap:.7rem;
+    font-family:var(--display);text-transform:uppercase;letter-spacing:.08em;
+    font-size:.92rem;color:var(--ink-soft);text-decoration:none;font-weight:500;
+    padding:.62rem 0;transition:color .3s var(--ease),transform .3s var(--ease);
+    transform-origin:left center;
+  }
+  .nav-list a .dot{width:7px;height:7px;border-radius:50%;background:transparent;
+    border:1.5px solid var(--ink-soft);transition:all .3s var(--ease);flex:none}
+  .nav-list a .num{font-size:.7rem;opacity:.5;font-variant-numeric:tabular-nums}
+  .nav-list a:hover{color:var(--ink)}
+  .nav-list a.active{color:var(--bn-red);transform:scale(1.08)}
+  .nav-list a.active .dot{background:var(--elac-orange);border-color:var(--elac-orange);
+    box-shadow:0 0 0 4px rgba(224,121,43,.18)}
+
+  /* main body */
+  .cs-main{max-width:760px}
+  .cs-meta{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:1.6rem 2rem;
+    padding-bottom:2.5rem;margin-bottom:1rem;border-bottom:1px solid var(--paper-line)}
+  .cs-meta dt{font-family:var(--display);text-transform:uppercase;letter-spacing:.1em;font-size:.74rem;
+    color:var(--elac-orange);margin-bottom:.5rem;font-weight:600}
+  .cs-meta dd{font-size:.98rem;line-height:1.5}
+  .cs-meta dd.team-list{display:flex;flex-direction:column}
+  .cs-meta dd.team-list span{display:block}
+  section.cs-section{padding:clamp(2.5rem,6vw,4.5rem) 0;border-bottom:1px solid var(--paper-line);scroll-margin-top:90px}
+  section.cs-section:last-child{border-bottom:none}
+  .cs-section .kicker{font-family:var(--display);text-transform:uppercase;letter-spacing:.16em;
+    font-size:.78rem;color:var(--elac-orange);font-weight:600;margin-bottom:1rem}
+  .cs-section h2{font-family:var(--display);text-transform:uppercase;font-weight:700;
+    font-size:clamp(1.8rem,4vw,2.9rem);line-height:1.02;margin-bottom:1.3rem;letter-spacing:-.005em}
+  .cs-section p{font-size:1.12rem;color:var(--ink-soft);margin-bottom:1.1rem;max-width:60ch}
+  .cs-section p .lead{color:var(--ink)}
+  .placeholder{color:#9a8f7d;font-style:italic}
+
+  .metrics{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1.5rem;margin:2rem 0}
+  .metric{border-left:3px solid var(--bn-red);padding-left:1.1rem}
+  .metric .big{font-family:var(--display);font-weight:700;font-size:clamp(2.4rem,6vw,3.6rem);
+    line-height:1;color:var(--ink)}
+  .metric .lbl{font-size:.92rem;color:var(--ink-soft);margin-top:.4rem}
+
+  .cs-figure{margin:2rem 0;border-radius:6px;overflow:hidden;border:1px solid var(--paper-line);
+    box-shadow:0 12px 32px rgba(0,0,0,.1)}
+  .cs-figure svg,.cs-figure img{display:block;width:100%}
+  .cs-figure.plain{border:none;box-shadow:none;background:transparent}
+  .cs-figure.plain img{border-radius:6px}
+  /* constrained phone-width screenshot, centered (Mark-portfolio logic for tall mobile PNGs) */
+  .cs-figure.phone{max-width:340px;margin-left:auto;margin-right:auto}
+  .cs-figure.phone img{border-radius:14px;box-shadow:0 18px 44px rgba(0,0,0,.18)}
+  /* two mobile screens side by side */
+  .phone-row{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem;margin:2rem 0;
+    max-width:560px;margin-left:auto;margin-right:auto}
+  .phone-row figure{margin:0}
+  .phone-row img{display:block;width:100%;border-radius:12px;box-shadow:0 14px 34px rgba(0,0,0,.16)}
+  .phone-row figcaption{font-size:.82rem;color:var(--ink-soft);font-style:italic;text-align:center;padding:.6rem 0}
+  .cap-center{text-align:center;font-style:italic;color:var(--ink-soft);font-size:.9rem !important;
+    max-width:48ch !important;margin:0 auto 1.1rem !important}
+  @media(max-width:560px){.phone-row{grid-template-columns:1fr;max-width:300px}}
+  figcaption{font-size:.85rem;color:var(--ink-soft);font-style:italic;padding:.8rem 1rem;background:var(--cream-deep)}
+  .cs-figure.plain figcaption{background:transparent;padding:.7rem 0;text-align:center}
+
+  /* two-up image row */
+  .fig-row{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem;margin:2rem 0}
+  .fig-row figure{margin:0}
+  @media(max-width:620px){.fig-row{grid-template-columns:1fr}}
+
+  /* pull quote (liner-note style) */
+  .pullquote{margin:2.4rem 0;padding:1.6rem 0 1.6rem 1.8rem;border-left:4px solid var(--elac-orange)}
+  .pullquote p{font-family:var(--serif);font-style:italic;font-size:1.3rem;line-height:1.45;
+    color:var(--ink);max-width:54ch;margin:0 0 .8rem}
+  .pullquote cite{font-family:var(--display);text-transform:uppercase;letter-spacing:.08em;
+    font-size:.8rem;font-style:normal;color:var(--ink-soft);font-weight:600}
+
+  /* three design principles */
+  .principles{display:grid;grid-template-columns:repeat(3,1fr);gap:1.4rem;margin:2rem 0}
+  .principle{background:var(--cream-deep);border-radius:8px;padding:1.4rem;border-top:3px solid var(--elac-orange)}
+  .principle .pn{font-family:var(--display);font-weight:700;font-size:1.6rem;color:var(--elac-orange);line-height:1}
+  .principle h4{font-family:var(--display);text-transform:uppercase;letter-spacing:.04em;font-size:1rem;
+    margin:.6rem 0 .5rem;color:var(--ink)}
+  .principle p{font-size:.95rem;color:var(--ink-soft);margin:0;max-width:none}
+  @media(max-width:720px){.principles{grid-template-columns:1fr}}
+
+  /* persona cards */
+  .personas{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem;margin:2rem 0}
+  .persona{border:1px solid var(--paper-line);border-radius:8px;padding:1.3rem;background:var(--cream)}
+  .persona .ptag{font-family:var(--display);text-transform:uppercase;letter-spacing:.06em;font-size:.72rem;
+    font-weight:600;color:var(--cream);background:var(--green-splash);padding:.25rem .6rem;border-radius:20px;display:inline-block}
+  .persona h4{font-family:var(--display);font-size:1.25rem;margin:.8rem 0 .2rem;color:var(--ink)}
+  .persona .pmeta{font-size:.82rem;color:var(--ink-soft);font-style:italic;margin-bottom:.7rem}
+  .persona p{font-size:.9rem;color:var(--ink-soft);margin:0;max-width:none}
+  @media(max-width:720px){.personas{grid-template-columns:1fr}}
+
+  /* takeaway / reflection block */
+  .takeaway{background:var(--green-splash);color:var(--cream);border-radius:10px;padding:2rem 2.2rem;margin:2rem 0}
+  .takeaway h3{font-family:var(--display);text-transform:uppercase;letter-spacing:.04em;font-size:1.1rem;margin-bottom:.8rem}
+  .takeaway p{color:rgba(244,236,220,.85);max-width:none;font-size:1.02rem}
+  .takeaway p:last-child{margin-bottom:0}
+
+  @media(max-width:860px){
+    .cs-body{grid-template-columns:1fr}
+    .cs-nav{position:static;margin-bottom:1rem}
+    .turntable-box{max-width:160px}
+    nav.top a{margin-left:.9rem;font-size:.78rem}
+    .cs-splash h1{font-size:clamp(2.6rem,12vw,4rem)}
+  }
+</style>
+</head>
+<body>
+<a href="#main" class="skip-link">Skip to content</a>
+
+<header class="bar">
+  <span class="brand">Donovan Le</span>
+  <nav class="top" aria-label="Primary">
+    <a href="#" data-goto="landing">Work</a>
+    <a href="#">Photography</a>
+    <a href="#">About</a>
+    <a href="https://www.linkedin.com/in/donovan-le/" target="_blank" rel="noopener">Contact</a>
+  </nav>
+</header>
+
+<main id="main">
+
+  <!-- ============================ LANDING ============================ -->
+  <div class="view active" id="view-landing">
+    <div class="landing-hero">
+      <h1>Hi, I'm Donovan, a <span class="hl-green">Human-Centered Product Designer</span> who still enjoys analog modalities — <span class="hl-purple">vinyl records</span>, <span class="hl-blue">film photography</span>, &amp; <span class="hl-red">vintage fashion</span> — in a modern world.</h1>
+      <p class="browse">Browse my shelf:</p>
+    </div>
+
+    <div class="crate" role="list" aria-label="Case studies">
+      <!-- Cards injected by JS -->
+    </div>
+  </div>
+
+  <!-- ========================== CASE STUDY =========================== -->
+  <div class="view" id="view-case">
+    <section class="cs-splash" aria-labelledby="cs-h1">
+      <a href="#" class="back" data-goto="landing">&larr; Back to shelf</a>
+      <div class="splash-bg">
+        <img src="images/bysage-splash.jpg" alt="BySage Clothing digital storefront — homepage, add-to-cart confirmation, and product detail page shown together">
+      </div>
+    </section>
+
+    <div class="cs-intro">
+      <h1 id="cs-h1">BySage</h1>
+      <p class="tagline">Created a digital storefront that embraces an emerging fashion brand's humble beginnings to instill trust in an ever-growing customer base.</p>
+    </div>
+
+    <div class="cs-body">
+      <!-- ---------- STICKY LEFT NAV ---------- -->
+      <aside class="cs-nav" aria-label="Case study sections">
+        <div class="turntable-box">
+          <!-- Turntable SVG with movable tonearm -->
+          <svg class="turntable" viewBox="0 0 240 240" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <!-- plinth -->
+            <rect x="8" y="8" width="224" height="224" rx="14" fill="#1A1714"/>
+            <rect x="8" y="8" width="224" height="224" rx="14" fill="none" stroke="#E0792B" stroke-width="1.5" opacity=".5"/>
+            <!-- platter -->
+            <circle cx="104" cy="124" r="86" fill="#0d0b09"/>
+            <circle cx="104" cy="124" r="86" fill="none" stroke="#332d27" stroke-width="1"/>
+            <!-- record -->
+            <circle cx="104" cy="124" r="74" fill="#15120f"/>
+            <g stroke="#2a2622" stroke-width="1" fill="none" opacity=".8">
+              <circle cx="104" cy="124" r="66"/><circle cx="104" cy="124" r="58"/>
+              <circle cx="104" cy="124" r="50"/><circle cx="104" cy="124" r="42"/>
+            </g>
+            <!-- label -->
+            <circle cx="104" cy="124" r="30" fill="#C2391F"/>
+            <circle cx="104" cy="124" r="3.5" fill="#F4ECDC"/>
+            <text x="104" y="112" text-anchor="middle" font-family="Oswald,sans-serif" font-size="8.5" fill="#F4ECDC" font-weight="600" letter-spacing=".5">BN-2402</text>
+            <text x="104" y="143" text-anchor="middle" font-family="Oswald,sans-serif" font-size="6.5" fill="#F4ECDC" opacity=".8">33⅓ RPM</text>
+            <!-- tonearm pivot (top-right) -->
+            <g id="tonearm" style="transform-box:fill-box;transform-origin:0% 0%">
+              <!-- pivot base -->
+              <circle cx="200" cy="60" r="13" fill="#2a2622" stroke="#E0792B" stroke-width="1.5"/>
+              <circle cx="200" cy="60" r="4" fill="#E0792B"/>
+              <!-- arm + headshell, drawn from pivot down-left toward record edge -->
+              <g id="arm-rot">
+                <line x1="200" y1="60" x2="150" y2="150" stroke="#c9c2b6" stroke-width="4.5" stroke-linecap="round"/>
+                <rect x="142" y="146" width="16" height="11" rx="2" fill="#1A1714" transform="rotate(60 150 150)"/>
+              </g>
+            </g>
+            <!-- start/end ticks -->
+            <text x="150" y="225" text-anchor="middle" font-family="Oswald,sans-serif" font-size="8" fill="#7a7066" letter-spacing=".1em">PROGRESS</text>
+          </svg>
+        </div>
+
+        <ul class="nav-list" id="navList">
+          <!-- injected -->
+        </ul>
+      </aside>
+
+      <!-- ---------- MAIN BODY ---------- -->
+      <article class="cs-main">
+        <dl class="cs-meta">
+          <div><dt>Role</dt><dd>Lead Product Designer &amp; Researcher</dd></div>
+          <div><dt>Team</dt><dd class="team-list"><span>Caitlyn Cielo (PM)</span><span>Mark Morera</span><span>Ryan Eang</span></dd></div>
+          <div><dt>Skills</dt><dd>UX/UI · User Research · Information Architecture · Prototyping</dd></div>
+          <div><dt>Timeline</dt><dd>10 Weeks</dd></div>
+          <div><dt>Client</dt><dd>BySage Clothing</dd></div>
+        </dl>
+
+        <section class="cs-section" id="sec-overview" data-label="Overview">
+          <p class="kicker">Overview</p>
+          <h2>How can we redesign BySage's website to authentically represent its values and aesthetic?</h2>
+          <p><span class="lead">BySage is a San Diego-based clothing brand built around limited drops and a loyal local following.</span> When we started, the entire brand presence lived on Instagram. The website only opened during launches — so first-time visitors had no way to browse the brand, read its story, or build any connection outside of drop windows.</p>
+          <p>Our team of four was brought on for a full website redesign: research the audience, define the visual direction, restructure the navigation, and deliver responsive prototypes the founder could build from. I led the project's design direction and owned the research phase — writing the survey, running interviews, and synthesizing findings into decisions the team could act on.</p>
+          <div class="metrics">
+            <div class="metric"><div class="big">200%</div><div class="lbl">Increase in Instagram followers</div></div>
+            <div class="metric"><div class="big">3 min</div><div class="lbl">Spring 2024 collection sold out</div></div>
+            <div class="metric"><div class="big">20%+</div><div class="lbl">Increase in traffic during drops</div></div>
+          </div>
+        </section>
+
+        <section class="cs-section" id="sec-research" data-label="Research">
+          <p class="kicker">User Research</p>
+          <h2>Listening before designing</h2>
+          <p>We interviewed <span class="lead">23 participants</span> across the UCSD community and the wider public — a mix of existing customers and people who had never bought from BySage but fit its target demographic of teens and students. A parallel survey of the existing customer base showed <span class="lead">39% were repeat buyers</span>, a strong signal that loyalty here was about the relationship with the founder and the local identity, not just the product.</p>
+          <p>Synthesizing the interviews, I grouped users into three personas defined by shopping frequency rather than demographics:</p>
+
+          <div class="personas">
+            <div class="persona">
+              <span class="ptag">Frequent</span>
+              <h4>Luna</h4>
+              <div class="pmeta">20 · Fashion student · values sustainability &amp; individuality</div>
+              <p>Wants versatile, year-round pieces that fit her budget and values. Frustrated by the lack of pieces tailored to a changing climate.</p>
+            </div>
+            <div class="persona">
+              <span class="ptag">Non-frequent</span>
+              <h4>Trevor</h4>
+              <div class="pmeta">19 · Student athlete · values comfort &amp; style</div>
+              <p>Discovered BySage once and hasn't returned. Needs durable, versatile clothing and a reason to re-engage outside of a drop.</p>
+            </div>
+            <div class="persona">
+              <span class="ptag">Potential</span>
+              <h4>Alex</h4>
+              <div class="pmeta">20 · Student · values individuality</div>
+              <p>Found BySage on social media but has never purchased. Needs the brand's story and a trustworthy, intuitive shopping experience before buying.</p>
+            </div>
+          </div>
+
+          <p>The pain points were structural, not cosmetic: the website only existed during drops, there were no customer reviews, and the brand relied almost entirely on Instagram for discovery. That gap between strong brand loyalty and a weak web presence was the core problem — people loved BySage but had nowhere to engage with it between launches.</p>
+
+          <div class="pullquote">
+            <p>"Honestly the website is pretty plain compared to the Instagram. You also can't see when the page is locked for new drops, which makes me forget about it sometimes."</p>
+            <cite>— Interview participant, SDSU undergrad</cite>
+          </div>
+        </section>
+
+        <section class="cs-section" id="sec-brand" data-label="Defining the Brand">
+          <p class="kicker">Defining the Brand</p>
+          <h2>From instinct to a design system</h2>
+          <p>The founder, Cameron, had a clear sense of BySage's identity but had never seen it translated into a full web experience. We created mood boards to explore a visual direction that felt authentic to the brand — and they became the bridge between his instinct and our design system. Color palette, typography, photography style, and layout rhythm all came out of this phase.</p>
+          <p>From that work, we landed on <span class="lead">three design principles</span> that anchored every screen. When the team disagreed on direction, we came back to these:</p>
+          <div class="principles">
+            <div class="principle">
+              <div class="pn">01</div>
+              <h4>Earth-tone palette</h4>
+              <p>A warm, natural palette reflecting BySage's outdoor roots and San Diego identity.</p>
+            </div>
+            <div class="principle">
+              <div class="pn">02</div>
+              <h4>Immediate impression</h4>
+              <p>A homepage that lands instantly, since most visitors arrive cold from Instagram with no prior context.</p>
+            </div>
+            <div class="principle">
+              <div class="pn">03</div>
+              <h4>Frictionless mobile</h4>
+              <p>Navigation that works on mobile without friction — where the majority of BySage's customers shop.</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="cs-section" id="sec-architecture" data-label="Architecture">
+          <p class="kicker">Information Architecture</p>
+          <h2>Site architecture before pixels</h2>
+          <p>Before opening Figma, I mapped the site architecture. The original site had no persistent navigation — most pages existed in isolation, and the only reliable path was back to Instagram. The new structure gave every page a clear place in the hierarchy: home, shop, collections, about, and policies, so visitors could browse the brand's identity outside of active drops.</p>
+          <figure class="cs-figure plain">
+            <img src="images/bysage-architecture.jpg" alt="BySage site architecture diagram mapping Homepage to Shop, Collections, About Us, and Policies with nested sub-pages" loading="lazy">
+            <figcaption>Full site map — restructuring isolated pages into a clear hierarchy.</figcaption>
+          </figure>
+        </section>
+
+        <section class="cs-section" id="sec-design" data-label="Final Design">
+          <p class="kicker">Final Design</p>
+          <h2>A mobile-first shopping experience</h2>
+          <p>The product page was rebuilt so customers can see everything that matters before buying — materials, fit, sizing, and reviews — directly addressing the trust gap that surfaced in research.</p>
+          <div class="phone-row">
+            <figure>
+              <img src="images/bysage-product-m1.jpg" alt="BySage mobile product page top: Expedition Hoodie image, price, size and color options, and add-to-cart" loading="lazy">
+            </figure>
+            <figure>
+              <img src="images/bysage-product-m2.jpg" alt="BySage mobile product page continued: sizing, size chart, and customer reviews" loading="lazy">
+            </figure>
+          </div>
+          <p class="cap-center">Mobile product page with reviews — built to earn first-time-buyer trust where most customers shop.</p>
+          <p>BySage's audience skews young — high school and college students who browse and buy from their phones. Responsive design wasn't optional. We designed mobile-first, then scaled up to desktop, making sure the shopping experience held together across both.</p>
+          <figure class="cs-figure plain">
+            <img src="images/bysage-laptop.jpg" alt="BySage homepage redesign on desktop, with a full-bleed brand hero and clear navigation" loading="lazy">
+            <figcaption>Redesigned homepage — an immediate brand impression for cold visitors.</figcaption>
+          </figure>
+          <p>The Collections and About pages turned the brand's history into something visitors could explore year-round. The About page lays out BySage's story as a timeline — from its first ten hoodies in Chula Vista to its present-day drops.</p>
+          <figure class="cs-figure plain">
+            <img src="images/bysage-about.jpg" alt="BySage About Us page presented as a vertical brand timeline from 2021 through the present" loading="lazy">
+            <figcaption>About Us — a brand timeline that gives visitors a reason to return between drops.</figcaption>
+          </figure>
+        </section>
+
+        <section class="cs-section" id="sec-testing" data-label="Testing">
+          <p class="kicker">Testing &amp; Iteration</p>
+          <h2>Task-based testing sharpened the build</h2>
+          <p>We ran task-based usability testing with <span class="lead">10 participants</span>, asking them to shop for a hoodie, add it to the cart, find contact info, and track an order while thinking aloud. Two structural issues surfaced, and we resolved both:</p>
+          <p><span class="lead">Inconsistent type sizing.</span> Users found text either too large or too small, with weak signifiers for interactive elements. We rebuilt the type scale across mobile and desktop and added clearer call-to-action indicators on every page.</p>
+          <p><span class="lead">Overwhelming content density.</span> Media and text felt unbalanced and scaled too large, crowding the page. We rescaled content, split long copy into shorter paragraphs, and revisited the Collections and About pages with the client to keep only the most essential messaging.</p>
+        </section>
+
+        <section class="cs-section" id="sec-results" data-label="Results">
+          <p class="kicker">Results</p>
+          <h2>Where did we end up?</h2>
+          <p>Giving BySage a persistent home drove engagement even outside of launch windows. After the redesign direction launched, the brand saw a <span class="lead">200% increase in Instagram followers</span>, sold out its <span class="lead">Spring 2024 collection within three minutes</span>, and saw a <span class="lead">20%+ lift in traffic</span> during drops.</p>
+          <p>Beyond the metrics, the founder could finally point people to a real website that represented his brand — not just an Instagram page that went dark between drops.</p>
+          <div class="pullquote">
+            <p>"Donovan immediately grasped and embraced our brand's vision, understanding the unique challenges of establishing trust and credibility for an emerging fashion brand. His redesign of the website not only improved navigation and usability but also significantly enhanced customer trust and engagement. His contributions have left a lasting impact on our brand's growth and reputation."</p>
+            <cite>— Cameron Pitel, Founder of BySage</cite>
+          </div>
+        </section>
+
+        <section class="cs-section" id="sec-reflection" data-label="Reflection">
+          <p class="kicker">Reflection</p>
+          <h2>What I took away</h2>
+          <div class="takeaway">
+            <h3>Designing within real constraints</h3>
+            <p>One of the most valuable skills I built was developing a product under a real business's constraints. As designers we often shoot for the stars, but this project grounded me — the goal was a site that was accessible, feasible, and genuinely buildable for our client, not just impressive in a portfolio.</p>
+            <p>If I had more time, I'd push harder on the shopping flow itself. We focused our energy on the homepage, navigation, and brand identity; the product detail, cart, and checkout could have used another round of testing. That's where I'd go next.</p>
+          </div>
+        </section>
+      </article>
+    </div>
+  </div>
+
+</main>
+
+
+<script>
+/* ============================================================
+   DATA — single source of truth (will become data.js)
+   ============================================================ */
+const PROJECTS = [
+  {id:'robotics', cat:'BN-2401', title:'Input Matters', role:'Human Factors Designer & Researcher',
+   label:'#E0792B', cover:'robotics',
+   pitch:'[One-sentence pitch: what this case study is about and the outcome.]'},
+  {id:'bysage', cat:'BN-2402', title:'BySage', role:'Lead Product Designer & Researcher',
+   label:'#C2391F', cover:'bysage',
+   pitch:'Turning a drop-based streetwear brand into a year-round shopping experience through research-led redesign.'},
+  {id:'kp', cat:'BN-2403', title:'Kaibigang Pilipino', role:'Head of Design',
+   label:'#1F5FA8', cover:'kp',
+   pitch:'[One-sentence pitch: what this case study is about and the outcome.]'},
+  {id:'acm', cat:'BN-2404', title:'ACM at UCSD', role:'UX Designer',
+   label:'#2E7D52', cover:'acm',
+   pitch:'[One-sentence pitch: what this case study is about and the outcome.]'},
+  {id:'nexgen', cat:'BN-2405', title:'NexGen', role:'[Role]',
+   label:'#6D3DBE', cover:'nexgen',
+   pitch:'[One-sentence pitch: what this case study is about and the outcome.]'},
+];
+
+/* Sections drive the nav. Only those with `done:true` (real content)
+   appear in the left nav and get a tonearm stop. Empty sections stay
+   hidden until you fill them in — then flip the flag (or, in the CMS,
+   the section simply won't render until it has a body). */
+const SECTIONS = [
+  {id:'sec-overview',     label:'Overview',          done:true},
+  {id:'sec-research',     label:'Research',          done:true},
+  {id:'sec-brand',        label:'Defining the Brand',done:true},
+  {id:'sec-architecture', label:'Architecture',      done:true},
+  {id:'sec-design',       label:'Final Design',      done:true},
+  {id:'sec-testing',      label:'Testing',           done:true},
+  {id:'sec-results',      label:'Results',           done:true},
+  {id:'sec-reflection',   label:'Reflection',        done:true},
+];
+// Sections actually shown in nav + tracked for scroll
+const ACTIVE_SECTIONS = SECTIONS.filter(s=>s.done);
+
+/* ---- original mid-century SVG cover art (swappable later) ---- */
+function coverArt(kind){
+  const arts = {
+    robotics:`<svg viewBox='0 0 300 300' xmlns='http://www.w3.org/2000/svg'>
+      <rect width='300' height='300' fill='#F4ECDC'/>
+      <rect width='300' height='300' fill='#15120f'/>
+      <circle cx='150' cy='120' r='66' fill='none' stroke='#E0792B' stroke-width='10'/>
+      <rect x='120' y='118' width='60' height='90' rx='6' fill='#C2391F'/>
+      <circle cx='150' cy='150' r='10' fill='#F4ECDC'/>
+      <text x='24' y='250' font-family='Oswald,sans-serif' font-size='30' fill='#F4ECDC' font-weight='700'>INPUT</text>
+      <text x='24' y='282' font-family='Oswald,sans-serif' font-size='30' fill='#E0792B' font-weight='700'>MATTERS</text>
+    </svg>`,
+    bysage:`<svg viewBox='0 0 300 300' xmlns='http://www.w3.org/2000/svg'>
+      <rect width='300' height='300' fill='#14402C'/>
+      <path d='M0 200 Q150 120 300 200 L300 300 L0 300 Z' fill='#E0792B'/>
+      <circle cx='150' cy='110' r='52' fill='#F4ECDC'/>
+      <text x='150' y='118' text-anchor='middle' font-family='Oswald,sans-serif' font-size='26' fill='#14402C' font-weight='700'>BYSAGE</text>
+      <text x='150' y='285' text-anchor='middle' font-family='Spectral,serif' font-size='13' fill='#14402C' font-style='italic'>outdoor / fashion</text>
+    </svg>`,
+    kp:`<svg viewBox='0 0 300 300' xmlns='http://www.w3.org/2000/svg'>
+      <rect width='300' height='300' fill='#1F5FA8'/>
+      <polygon points='150,40 175,120 260,120 192,168 218,250 150,200 82,250 108,168 40,120 125,120' fill='#E0792B'/>
+      <text x='150' y='285' text-anchor='middle' font-family='Oswald,sans-serif' font-size='22' fill='#F4ECDC' font-weight='700'>KAIBIGANG</text>
+    </svg>`,
+    acm:`<svg viewBox='0 0 300 300' xmlns='http://www.w3.org/2000/svg'>
+      <rect width='300' height='300' fill='#2E7D52'/>
+      <g fill='#F4ECDC'><rect x='40' y='40' width='80' height='80'/><rect x='180' y='40' width='80' height='80'/>
+      <rect x='40' y='180' width='80' height='80'/></g>
+      <circle cx='220' cy='220' r='42' fill='#E0792B'/>
+      <text x='150' y='160' text-anchor='middle' font-family='Oswald,sans-serif' font-size='52' fill='#F4ECDC' font-weight='700'>ACM</text>
+    </svg>`,
+    nexgen:`<svg viewBox='0 0 300 300' xmlns='http://www.w3.org/2000/svg'>
+      <rect width='300' height='300' fill='#6D3DBE'/>
+      <path d='M40 260 L150 40 L260 260 Z' fill='none' stroke='#E0792B' stroke-width='12'/>
+      <circle cx='150' cy='170' r='26' fill='#C2391F'/>
+      <text x='150' y='288' text-anchor='middle' font-family='Oswald,sans-serif' font-size='24' fill='#F4ECDC' font-weight='700'>NEXGEN</text>
+    </svg>`,
+  };
+  return arts[kind] || arts.bysage;
+}
+
+/* ============================================================
+   RENDER LANDING GRID
+   ============================================================ */
+const crate = document.querySelector('.crate');
+PROJECTS.forEach(p=>{
+  const card = document.createElement('button');
+  card.className='album';
+  card.setAttribute('role','listitem');
+  card.setAttribute('aria-label',`${p.title} — ${p.role}. View case study.`);
+  card.dataset.id=p.id;
+  card.innerHTML=`
+    <div class="sleeve-wrap">
+      <div class="vinyl" style="--label-color:${p.label}"></div>
+      <div class="sleeve">${coverArt(p.cover)}</div>
+    </div>
+    <div class="album-meta">
+      <div>
+        <div class="album-title">${p.title}</div>
+        <div class="album-role">${p.role}</div>
+      </div>
+      <div class="album-cat">${p.cat}</div>
+    </div>
+    <p class="album-pitch${p.pitch.trim().startsWith('[')?' placeholder':''}">${p.pitch}</p>`;
+  card.addEventListener('click',()=>{
+    // In the real build each card routes to /case/<id>.html.
+    // In this preview, only BySage is built out.
+    if(p.id==='bysage'){ showView('case'); }
+    else { alert(`"${p.title}" routes to its own case study page in the full build.\nBySage is the one fully built out in this preview.`); }
+  });
+  crate.appendChild(card);
+});
+
+/* ============================================================
+   RENDER NAV LIST
+   ============================================================ */
+const navList = document.getElementById('navList');
+ACTIVE_SECTIONS.forEach((s,i)=>{
+  const li=document.createElement('li');
+  li.innerHTML=`<a href="#${s.id}" data-target="${s.id}">
+      <span class="dot"></span><span class="num">${String(i+1).padStart(2,'0')}</span>${s.label}</a>`;
+  navList.appendChild(li);
+});
+// Hide section blocks that aren't marked done (so the body matches the nav)
+SECTIONS.filter(s=>!s.done).forEach(s=>{
+  const el=document.getElementById(s.id);
+  if(el) el.style.display='none';
+});
+
+/* ============================================================
+   VIEW SWITCHING (preview shim for routing)
+   ============================================================ */
+function showView(name){
+  document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));
+  document.getElementById('view-'+name).classList.add('active');
+  window.scrollTo(0,0);
+}
+document.querySelectorAll('[data-goto]').forEach(el=>{
+  el.addEventListener('click',e=>{e.preventDefault();showView(el.dataset.goto);});
+});
+
+/* ============================================================
+   SCROLL-LINKED TONEARM + SECTION HIGHLIGHT
+   ============================================================ */
+const arm = document.getElementById('arm-rot');
+const navLinks = [...document.querySelectorAll('.nav-list a')];
+const sections = ACTIVE_SECTIONS.map(s=>document.getElementById(s.id));
+
+// tonearm sweeps from rest to inner groove; END reached when the LAST
+// section (Reflection) becomes active — not at the very bottom of the page
+const REST = -4, END = 11;
+
+function onScroll(){
+  const caseView = document.getElementById('view-case');
+  if(!caseView.classList.contains('active')) return;
+  if(!sections.length) return;
+
+  // active threshold line: 40% down the viewport
+  const threshold = window.innerHeight*0.4;
+
+  // progress is anchored between the first section reaching the threshold
+  // and the LAST section reaching it — so the arm lands at END on Reflection
+  const firstTop = sections[0].getBoundingClientRect().top + window.scrollY;
+  const lastTop  = sections[sections.length-1].getBoundingClientRect().top + window.scrollY;
+  const startScroll = firstTop - threshold;
+  const endScroll   = lastTop  - threshold;
+  const span = Math.max(1, endScroll - startScroll);
+  const prog = Math.min(1, Math.max(0,(window.scrollY - startScroll)/span));
+  const angle = REST + (END-REST)*prog;
+  arm.style.transform=`rotate(${angle}deg)`;
+  arm.style.transformOrigin='200px 60px';
+
+  // active section
+  let activeIdx=0;
+  sections.forEach((sec,i)=>{
+    const r=sec.getBoundingClientRect();
+    if(r.top <= threshold) activeIdx=i;
+  });
+  navLinks.forEach((a,i)=>a.classList.toggle('active',i===activeIdx));
+}
+window.addEventListener('scroll',onScroll,{passive:true});
+window.addEventListener('resize',onScroll);
+onScroll();
+</script>
+</body>
+</html>
