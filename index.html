@@ -70,6 +70,9 @@
   /* ============================================================
      VIEW SWITCHER (preview only, not in final build)
      ============================================================ */
+  .preview-tag{position:fixed;bottom:1rem;left:1rem;z-index:10001;
+    background:var(--ink);color:var(--cream);font-family:var(--display);text-transform:uppercase;
+    letter-spacing:.08em;font-size:.7rem;padding:.5rem .8rem;border-radius:4px;opacity:.85}
 
   .view{display:none}
   .view.active{display:block;animation:fade .5s var(--ease)}
@@ -226,6 +229,13 @@
   .cs-section p{font-size:1.12rem;color:var(--ink-soft);margin-bottom:1.1rem;max-width:60ch}
   .cs-section p .lead{color:var(--ink)}
   .placeholder{color:#9a8f7d;font-style:italic}
+  .cs-section .owned-list{list-style:none;counter-reset:owned;margin:0 0 1.6rem;max-width:60ch}
+  .cs-section .owned-list li{counter-increment:owned;position:relative;padding-left:2.4rem;
+    margin-bottom:1rem;font-size:1.05rem;color:var(--ink-soft);line-height:1.5}
+  .cs-section .owned-list li::before{content:counter(owned);position:absolute;left:0;top:.1rem;
+    font-family:var(--display);font-weight:700;font-size:.95rem;color:var(--elac-orange);
+    border:1.5px solid var(--elac-orange);border-radius:50%;width:1.6rem;height:1.6rem;
+    display:flex;align-items:center;justify-content:center}
 
   .metrics{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1.5rem;margin:2rem 0}
   .metric{border-left:3px solid var(--bn-red);padding-left:1.1rem}
@@ -284,6 +294,27 @@
   .persona p{font-size:.9rem;color:var(--ink-soft);margin:0;max-width:none}
   @media(max-width:720px){.personas{grid-template-columns:1fr}}
 
+  /* pain point cards (research) */
+  .pain-points{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem;margin:2rem 0}
+  .pain-point{background:var(--cream-deep);border-radius:8px;padding:1.3rem;border-top:3px solid var(--bn-red)}
+  .pain-point h4{font-family:var(--display);text-transform:uppercase;letter-spacing:.04em;font-size:1rem;
+    margin-bottom:.6rem;color:var(--ink)}
+  .pain-point .quote{font-style:italic;font-size:.92rem;color:var(--ink-soft);margin:0;max-width:none}
+  .pain-point.placeholder-point{border-top-color:#9a8f7d}
+  @media(max-width:720px){.pain-points{grid-template-columns:1fr}}
+
+  /* labeled issue blocks (testing section) */
+  .issue-block{margin-bottom:1.8rem}
+  .issue-block h4{font-family:var(--display);text-transform:uppercase;letter-spacing:.05em;
+    font-size:1.05rem;font-weight:600;color:var(--bn-red);margin-bottom:.5rem}
+  .issue-block p{margin-bottom:0}
+
+  /* labeled issue blocks (testing section) */
+  .issue-block{margin-bottom:1.6rem}
+  .issue-block h4{font-family:var(--display);text-transform:uppercase;letter-spacing:.04em;
+    font-size:1rem;color:var(--ink);margin-bottom:.4rem}
+  .issue-block p{margin-bottom:0}
+
   /* takeaway / reflection block */
   .takeaway{background:var(--green-splash);color:var(--cream);border-radius:10px;padding:2rem 2.2rem;margin:2rem 0}
   .takeaway h3{font-family:var(--display);text-transform:uppercase;letter-spacing:.04em;font-size:1.1rem;margin-bottom:.8rem}
@@ -303,7 +334,7 @@
 <a href="#main" class="skip-link">Skip to content</a>
 
 <header class="bar">
-  <span class="brand">Donovan Le</span>
+  <a href="#" class="brand" data-goto="landing" style="text-decoration:none;color:inherit;cursor:pointer">Donovan Le</a>
   <nav class="top" aria-label="Primary">
     <a href="#" data-goto="landing">Work</a>
     <a href="#">Photography</a>
@@ -317,7 +348,7 @@
   <!-- ============================ LANDING ============================ -->
   <div class="view active" id="view-landing">
     <div class="landing-hero">
-      <h1>Hi, I'm Donovan, a <span class="hl-green">Human-Centered Product Designer</span> who still enjoys analog modalities — <span class="hl-purple">vinyl records</span>, <span class="hl-blue">film photography</span>, &amp; <span class="hl-red">vintage hi-fi audio gear</span> — in a modern world.</h1>
+      <h1>Hi, I'm Donovan, a <span class="hl-green">Human-Centered Product Designer</span> who still enjoys analog modalities — <span class="hl-purple">vinyl records</span>, <span class="hl-blue">film photography</span>, &amp; <span class="hl-red">vintage fashion</span> — in a modern world.</h1>
       <p class="browse">Browse my shelf:</p>
     </div>
 
@@ -397,8 +428,13 @@
         <section class="cs-section" id="sec-overview" data-label="Overview">
           <p class="kicker">Overview</p>
           <h2>How can we redesign BySage's website to authentically represent its values and aesthetic?</h2>
-          <p><span class="lead">BySage is a San Diego-based clothing brand built around limited drops and a loyal local following.</span> When we started, the entire brand presence lived on Instagram. The website only opened during launches — so first-time visitors had no way to browse the brand, read its story, or build any connection outside of drop windows.</p>
-          <p>Our team of four was brought on for a full website redesign: research the audience, define the visual direction, restructure the navigation, and deliver responsive prototypes the founder could build from. I led the project's design direction and owned the research phase — writing the survey, running interviews, and synthesizing findings into decisions the team could act on.</p>
+          <p><span class="lead">BySage is a San Diego-based clothing brand built around limited drops and a loyal local following.</span> When we started, the entire brand presence lived solely on Instagram, and the website only opened during launches — so first-time visitors had no way to browse the brand, read its story, or build any connection outside of drop windows.</p>
+          <p>Our team of four was brought on for a full website redesign. As lead, I owned:</p>
+          <ol class="owned-list">
+            <li>The reconstruction of site navigation, visual direction, and design across the product, collections, and home pages — focused on product transparency and brand storytelling.</li>
+            <li>Leading our team through user interviews, design sprints, and usability testing.</li>
+            <li>Proactively ideating with the PM and brand stakeholder — setting sprint goals for the product roadmap and implementing a plan for a viable MVP.</li>
+          </ol>
           <div class="metrics">
             <div class="metric"><div class="big">200%</div><div class="lbl">Increase in Instagram followers</div></div>
             <div class="metric"><div class="big">3 min</div><div class="lbl">Spring 2024 collection sold out</div></div>
@@ -409,7 +445,23 @@
         <section class="cs-section" id="sec-research" data-label="Research">
           <p class="kicker">User Research</p>
           <h2>Listening before designing</h2>
-          <p>We interviewed <span class="lead">23 participants</span> across the UCSD community and the wider public — a mix of existing customers and people who had never bought from BySage but fit its target demographic of teens and students. A parallel survey of the existing customer base showed <span class="lead">39% were repeat buyers</span>, a strong signal that loyalty here was about the relationship with the founder and the local identity, not just the product.</p>
+          <p>We interviewed <span class="lead">23 individuals</span> — from frequent repeat loyalists to potential customers who'd never bought from BySage. We needed that range of perspectives, and it surfaced three main issues:</p>
+
+          <div class="pain-points">
+            <div class="pain-point">
+              <h4>Trust in Small Businesses</h4>
+              <p class="quote">"How do I know this brand is legit? With a small label I can't always tell if the quality is there before I buy."</p>
+            </div>
+            <div class="pain-point">
+              <h4>Unclear Product Information</h4>
+              <p class="quote">"When a site buries the details, I give up. I don't have time to dig around for fit, materials, or policies between meetings."</p>
+            </div>
+            <div class="pain-point">
+              <h4>Choice Overload on Mobile</h4>
+              <p class="quote">"There's so much to scroll through and no guidance. I just want to find the standout piece without endless swiping."</p>
+            </div>
+          </div>
+
           <p>Synthesizing the interviews, I grouped users into three personas defined by shopping frequency rather than demographics:</p>
 
           <div class="personas">
@@ -433,7 +485,7 @@
             </div>
           </div>
 
-          <p>The pain points were structural, not cosmetic: the website only existed during drops, there were no customer reviews, and the brand relied almost entirely on Instagram for discovery. That gap between strong brand loyalty and a weak web presence was the core problem — people loved BySage but had nowhere to engage with it between launches.</p>
+          <p>That gap between strong brand loyalty and a weak web presence was the core problem — people loved BySage but had nowhere to engage with it between launches.</p>
 
           <div class="pullquote">
             <p>"Honestly the website is pretty plain compared to the Instagram. You also can't see when the page is locked for new drops, which makes me forget about it sometimes."</p>
@@ -441,26 +493,25 @@
           </div>
         </section>
 
-        <section class="cs-section" id="sec-brand" data-label="Defining the Brand">
-          <p class="kicker">Defining the Brand</p>
-          <h2>From instinct to a design system</h2>
-          <p>The founder, Cameron, had a clear sense of BySage's identity but had never seen it translated into a full web experience. We created mood boards to explore a visual direction that felt authentic to the brand — and they became the bridge between his instinct and our design system. Color palette, typography, photography style, and layout rhythm all came out of this phase.</p>
-          <p>From that work, we landed on <span class="lead">three design principles</span> that anchored every screen. When the team disagreed on direction, we came back to these:</p>
+        <section class="cs-section" id="sec-features" data-label="Feature Areas">
+          <p class="kicker">Feature Areas</p>
+          <h2>Three features I spearheaded for the MVP</h2>
+          <p>Based on the research findings, I helped define three feature areas that became the backbone of the MVP:</p>
           <div class="principles">
             <div class="principle">
               <div class="pn">01</div>
-              <h4>Earth-tone palette</h4>
-              <p>A warm, natural palette reflecting BySage's outdoor roots and San Diego identity.</p>
+              <h4>Customer Testimonials</h4>
+              <p>Display customer reviews to ease <span class="placeholder">[finish: e.g. first-time-buyer hesitation and build trust in the brand]</span>.</p>
             </div>
             <div class="principle">
               <div class="pn">02</div>
-              <h4>Immediate impression</h4>
-              <p>A homepage that lands instantly, since most visitors arrive cold from Instagram with no prior context.</p>
+              <h4>Transparent Product Details</h4>
+              <p>Offer customers detailed size charts, material blends, and return/shipping policies.</p>
             </div>
             <div class="principle">
               <div class="pn">03</div>
-              <h4>Frictionless mobile</h4>
-              <p>Navigation that works on mobile without friction — where the majority of BySage's customers shop.</p>
+              <h4>Smooth Responsive Design <span class="placeholder">[title tbd]</span></h4>
+              <p>Smooth responsive design for easy browsing.</p>
             </div>
           </div>
         </section>
@@ -468,7 +519,7 @@
         <section class="cs-section" id="sec-architecture" data-label="Architecture">
           <p class="kicker">Information Architecture</p>
           <h2>Site architecture before pixels</h2>
-          <p>Before opening Figma, I mapped the site architecture. The original site had no persistent navigation — most pages existed in isolation, and the only reliable path was back to Instagram. The new structure gave every page a clear place in the hierarchy: home, shop, collections, about, and policies, so visitors could browse the brand's identity outside of active drops.</p>
+          <p>Proper site architecture can turn endless scrolling into actionable clicks that lead to increase in sales. Our new structure gave every page a clear place so visitors could browse the brand's identity outside of active drops.</p>
           <figure class="cs-figure plain">
             <img src="images/bysage-architecture.jpg" alt="BySage site architecture diagram mapping Homepage to Shop, Collections, About Us, and Policies with nested sub-pages" loading="lazy">
             <figcaption>Full site map — restructuring isolated pages into a clear hierarchy.</figcaption>
@@ -503,9 +554,22 @@
         <section class="cs-section" id="sec-testing" data-label="Testing">
           <p class="kicker">Testing &amp; Iteration</p>
           <h2>Task-based testing sharpened the build</h2>
-          <p>We ran task-based usability testing with <span class="lead">10 participants</span>, asking them to shop for a hoodie, add it to the cart, find contact info, and track an order while thinking aloud. Two structural issues surfaced, and we resolved both:</p>
-          <p><span class="lead">Inconsistent type sizing.</span> Users found text either too large or too small, with weak signifiers for interactive elements. We rebuilt the type scale across mobile and desktop and added clearer call-to-action indicators on every page.</p>
-          <p><span class="lead">Overwhelming content density.</span> Media and text felt unbalanced and scaled too large, crowding the page. We rescaled content, split long copy into shorter paragraphs, and revisited the Collections and About pages with the client to keep only the most essential messaging.</p>
+          <p>We ran task-based usability testing with <span class="lead">10 participants</span>, asking them to complete the following while thinking aloud:</p>
+          <ol class="owned-list">
+            <li>Shop for a hoodie</li>
+            <li>Add it to the cart</li>
+            <li>Find contact info</li>
+            <li>Track an order</li>
+          </ol>
+          <p>Two structural issues surfaced, and we resolved both:</p>
+          <div class="issue-block">
+            <h4>Inconsistent Type Sizing</h4>
+            <p>Users found text either too large or too small, with weak signifiers for interactive elements. We rebuilt the type scale across mobile and desktop and added clearer call-to-action indicators on every page.</p>
+          </div>
+          <div class="issue-block">
+            <h4>Overwhelming Content Density</h4>
+            <p>Media and text felt unbalanced and scaled too large, crowding the page. We rescaled content, split long copy into shorter paragraphs, and revisited the Collections and About pages with the client to keep only the most essential messaging.</p>
+          </div>
         </section>
 
         <section class="cs-section" id="sec-results" data-label="Results">
@@ -564,7 +628,7 @@ const PROJECTS = [
 const SECTIONS = [
   {id:'sec-overview',     label:'Overview',          done:true},
   {id:'sec-research',     label:'Research',          done:true},
-  {id:'sec-brand',        label:'Defining the Brand',done:true},
+  {id:'sec-features',     label:'Feature Areas',     done:true},
   {id:'sec-architecture', label:'Architecture',      done:true},
   {id:'sec-design',       label:'Final Design',      done:true},
   {id:'sec-testing',      label:'Testing',           done:true},
