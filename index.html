@@ -14,7 +14,7 @@
   :root{
     --elac-orange:#E0792B;
     --bn-red:#C2391F;
-    --cream:#F7F2ED;
+    --cream:#FCFAF8;
     --cream-deep:#EBE0CA;
     --ink:#1A1714;
     --ink-soft:#4A433B;
@@ -59,7 +59,7 @@
     position:sticky;top:0;z-index:200;
     display:flex;align-items:center;justify-content:space-between;
     padding:1.1rem clamp(1.2rem,4vw,3rem);
-    background:rgba(247,242,237,.86);backdrop-filter:blur(8px);
+    background:rgba(252,250,248,.86);backdrop-filter:blur(8px);
     border-bottom:1px solid var(--paper-line);
   }
   .brand{font-family:var(--display);font-weight:700;font-size:1.35rem;letter-spacing:.02em;text-transform:uppercase}
@@ -318,7 +318,7 @@
   /* takeaway / reflection block */
   .takeaway{background:var(--green-splash);color:var(--cream);border-radius:10px;padding:2rem 2.2rem;margin:2rem 0}
   .takeaway h3{font-family:var(--display);text-transform:uppercase;letter-spacing:.04em;font-size:1.1rem;margin-bottom:.8rem}
-  .takeaway p{color:rgba(247,242,237,.85);max-width:none;font-size:1.02rem}
+  .takeaway p{color:rgba(252,250,248,.85);max-width:none;font-size:1.02rem}
   .takeaway p:last-child{margin-bottom:0}
 
   @media(max-width:860px){
@@ -391,9 +391,9 @@
             </g>
             <!-- label -->
             <circle cx="104" cy="124" r="30" fill="#C2391F"/>
-            <circle cx="104" cy="124" r="3.5" fill="#F7F2ED"/>
-            <text x="104" y="112" text-anchor="middle" font-family="Oswald,sans-serif" font-size="8.5" fill="#F7F2ED" font-weight="600" letter-spacing=".5">BN-2402</text>
-            <text x="104" y="143" text-anchor="middle" font-family="Oswald,sans-serif" font-size="6.5" fill="#F7F2ED" opacity=".8">33⅓ RPM</text>
+            <circle cx="104" cy="124" r="3.5" fill="#FCFAF8"/>
+            <text x="104" y="112" text-anchor="middle" font-family="Oswald,sans-serif" font-size="8.5" fill="#FCFAF8" font-weight="600" letter-spacing=".5">BN-2402</text>
+            <text x="104" y="143" text-anchor="middle" font-family="Oswald,sans-serif" font-size="6.5" fill="#FCFAF8" opacity=".8">33⅓ RPM</text>
             <!-- tonearm pivot (top-right) -->
             <g id="tonearm" style="transform-box:fill-box;transform-origin:0% 0%">
               <!-- pivot base -->
@@ -642,38 +642,38 @@ const ACTIVE_SECTIONS = SECTIONS.filter(s=>s.done);
 function coverArt(kind){
   const arts = {
     robotics:`<svg viewBox='0 0 300 300' xmlns='http://www.w3.org/2000/svg'>
-      <rect width='300' height='300' fill='#F7F2ED'/>
+      <rect width='300' height='300' fill='#FCFAF8'/>
       <rect width='300' height='300' fill='#15120f'/>
       <circle cx='150' cy='120' r='66' fill='none' stroke='#E0792B' stroke-width='10'/>
       <rect x='120' y='118' width='60' height='90' rx='6' fill='#C2391F'/>
-      <circle cx='150' cy='150' r='10' fill='#F7F2ED'/>
-      <text x='24' y='250' font-family='Oswald,sans-serif' font-size='30' fill='#F7F2ED' font-weight='700'>INPUT</text>
+      <circle cx='150' cy='150' r='10' fill='#FCFAF8'/>
+      <text x='24' y='250' font-family='Oswald,sans-serif' font-size='30' fill='#FCFAF8' font-weight='700'>INPUT</text>
       <text x='24' y='282' font-family='Oswald,sans-serif' font-size='30' fill='#E0792B' font-weight='700'>MATTERS</text>
     </svg>`,
     bysage:`<svg viewBox='0 0 300 300' xmlns='http://www.w3.org/2000/svg'>
       <rect width='300' height='300' fill='#14402C'/>
       <path d='M0 200 Q150 120 300 200 L300 300 L0 300 Z' fill='#E0792B'/>
-      <circle cx='150' cy='110' r='52' fill='#F7F2ED'/>
+      <circle cx='150' cy='110' r='52' fill='#FCFAF8'/>
       <text x='150' y='118' text-anchor='middle' font-family='Oswald,sans-serif' font-size='26' fill='#14402C' font-weight='700'>BYSAGE</text>
       <text x='150' y='285' text-anchor='middle' font-family='Spectral,serif' font-size='13' fill='#14402C' font-style='italic'>outdoor / fashion</text>
     </svg>`,
     kp:`<svg viewBox='0 0 300 300' xmlns='http://www.w3.org/2000/svg'>
       <rect width='300' height='300' fill='#1F5FA8'/>
       <polygon points='150,40 175,120 260,120 192,168 218,250 150,200 82,250 108,168 40,120 125,120' fill='#E0792B'/>
-      <text x='150' y='285' text-anchor='middle' font-family='Oswald,sans-serif' font-size='22' fill='#F7F2ED' font-weight='700'>KAIBIGANG</text>
+      <text x='150' y='285' text-anchor='middle' font-family='Oswald,sans-serif' font-size='22' fill='#FCFAF8' font-weight='700'>KAIBIGANG</text>
     </svg>`,
     acm:`<svg viewBox='0 0 300 300' xmlns='http://www.w3.org/2000/svg'>
       <rect width='300' height='300' fill='#2E7D52'/>
-      <g fill='#F7F2ED'><rect x='40' y='40' width='80' height='80'/><rect x='180' y='40' width='80' height='80'/>
+      <g fill='#FCFAF8'><rect x='40' y='40' width='80' height='80'/><rect x='180' y='40' width='80' height='80'/>
       <rect x='40' y='180' width='80' height='80'/></g>
       <circle cx='220' cy='220' r='42' fill='#E0792B'/>
-      <text x='150' y='160' text-anchor='middle' font-family='Oswald,sans-serif' font-size='52' fill='#F7F2ED' font-weight='700'>ACM</text>
+      <text x='150' y='160' text-anchor='middle' font-family='Oswald,sans-serif' font-size='52' fill='#FCFAF8' font-weight='700'>ACM</text>
     </svg>`,
     nexgen:`<svg viewBox='0 0 300 300' xmlns='http://www.w3.org/2000/svg'>
       <rect width='300' height='300' fill='#6D3DBE'/>
       <path d='M40 260 L150 40 L260 260 Z' fill='none' stroke='#E0792B' stroke-width='12'/>
       <circle cx='150' cy='170' r='26' fill='#C2391F'/>
-      <text x='150' y='288' text-anchor='middle' font-family='Oswald,sans-serif' font-size='24' fill='#F7F2ED' font-weight='700'>NEXGEN</text>
+      <text x='150' y='288' text-anchor='middle' font-family='Oswald,sans-serif' font-size='24' fill='#FCFAF8' font-weight='700'>NEXGEN</text>
     </svg>`,
   };
   return arts[kind] || arts.bysage;
