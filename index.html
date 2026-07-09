@@ -813,19 +813,19 @@
             <p>Standardizing the design system helped users visualize Stretch's physical attributes, but each modality had different interaction logic. Modality-specific icons served as indicators alongside function labels—Mouse users drag sliders, Gamepad users see controller button icons, and Omni users see hand gestures within a 3D space.</p>
             <div style="margin-top:1.2rem;display:flex;flex-direction:column;gap:1.4rem">
               <figure class="cs-figure plain" style="margin:0">
-                <video autoplay loop muted playsinline style="width:100%;border-radius:6px">
+                <video class="auto-vid" autoplay loop muted playsinline preload="auto" style="width:100%;border-radius:6px">
                   <source src="images/input-matters/Tele-Inclusion Tutorial - Mouse Interface.mp4" type="video/mp4">
                 </video>
                 <figcaption>Mouse &amp; Keyboard</figcaption>
               </figure>
               <figure class="cs-figure plain" style="margin:0">
-                <video autoplay loop muted playsinline style="width:100%;border-radius:6px">
+                <video class="auto-vid" autoplay loop muted playsinline preload="auto" style="width:100%;border-radius:6px">
                   <source src="images/input-matters/Tele-Inclusion Tutorial - Xbox Interface.mp4" type="video/mp4">
                 </video>
                 <figcaption>Gamepad</figcaption>
               </figure>
               <figure class="cs-figure plain" style="margin:0">
-                <video autoplay loop muted playsinline style="width:100%;border-radius:6px">
+                <video class="auto-vid" autoplay loop muted playsinline preload="auto" style="width:100%;border-radius:6px">
                   <source src="images/input-matters/Tele-Inclusion Tutorial - Omni Interface.mp4" type="video/mp4">
                 </video>
                 <figcaption>Haptic Omni Stylus</figcaption>
@@ -845,7 +845,7 @@
             <h4>03—Redesigning Components for 3D Motion</h4>
             <p>Our original arrow component didn't convey Stretch's arm moving through three axes. A new slider component unique to the arm's motion gave users a clearer sense of how their inputs translated to Stretch's physical movements.</p>
             <figure class="cs-figure plain" style="margin-top:1.2rem">
-              <video autoplay loop muted playsinline style="width:100%;border-radius:6px">
+              <video class="auto-vid" autoplay loop muted playsinline preload="auto" style="width:100%;border-radius:6px">
                 <source src="images/input-matters/Tele-Inclusion Tutorial - Mouse Interface (Arm Extend).mp4" type="video/mp4">
               </video>
             </figure>
@@ -1212,6 +1212,11 @@ function closeWip(){
 
 wipOverlay.addEventListener('click', e=>{ if(e.target===wipOverlay) closeWip(); });
 wipOverlay.querySelector('.wip-close').addEventListener('click', closeWip);
+
+/* Force autoplay on all case-study videos */
+document.querySelectorAll('video.auto-vid').forEach(v=>{
+  v.play().catch(()=>{});
+});
 </script>
 </body>
 </html>
