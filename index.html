@@ -3,10 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Donovan Le — Portfolio Preview</title>
+<title>Donovan Le—Portfolio Preview</title>
 <style>
   /* ============================================================
-     FONTS — Blue Note / mid-century: condensed display caps +
+     FONTS—Blue Note / mid-century: condensed display caps +
      refined serif for liner-note body text
      ============================================================ */
   @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Spectral:ital,wght@0,400;0,500;0,600;1,400&display=swap');
@@ -127,7 +127,7 @@
     transition:transform .55s var(--ease);
     z-index:1;
   }
-  /* concentric grooves — masked to the black vinyl only (outside the label) */
+  /* concentric grooves—masked to the black vinyl only (outside the label) */
   .vinyl::before{
     content:"";position:absolute;inset:0;border-radius:50%;
     background:repeating-radial-gradient(circle at center,
@@ -159,7 +159,8 @@
   .album-cat{font-family:var(--display);font-size:.72rem;letter-spacing:.1em;color:var(--ink-soft);
     white-space:nowrap}
   .album-role{font-size:.86rem;color:var(--ink-soft);font-style:italic;margin-top:.15rem}
-  .album-pitch{font-size:.92rem;color:var(--ink);margin-top:.7rem;line-height:1.45;max-width:38ch}
+  .album-pitch{font-size:.92rem;color:var(--ink);margin-top:.7rem;line-height:1.45;max-width:38ch;
+    display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;min-height:calc(1.45em * 3)}
 
   /* ============================================================
      CASE STUDY PAGE
@@ -169,12 +170,13 @@
     position:relative;width:100%;background:var(--green-splash);overflow:hidden;
   }
   .cs-splash .splash-bg{display:block;width:100%}
-  .cs-splash .splash-bg img{width:100%;height:auto;display:block;
-    max-height:78vh;object-fit:cover;object-position:center}
+  .cs-splash .splash-bg img{width:100%;height:clamp(320px,48vh,580px);object-fit:cover;object-position:center;display:block}
+  .cs-splash.splash-contain{background:#fff}
+  .cs-splash.splash-contain .splash-bg img{object-fit:contain;background:#fff}
   .cs-splash .back{position:absolute;top:clamp(1rem,3vw,2rem);left:clamp(1.2rem,4vw,3rem);z-index:3;
     font-family:var(--display);text-transform:uppercase;letter-spacing:.1em;font-size:.8rem;
     color:var(--cream);text-decoration:none;opacity:.9;display:inline-flex;gap:.5rem;align-items:center;
-    background:rgba(13,40,28,.55);padding:.5rem .9rem;border-radius:20px;backdrop-filter:blur(4px)}
+    background:rgba(120,115,110,.35);padding:.5rem .9rem;border-radius:20px;backdrop-filter:blur(4px)}
   .cs-splash .back:hover{opacity:1}
   /* title + tagline block below the image (Brandon-style) */
   .cs-intro{max-width:1400px;margin:0 auto;
@@ -187,7 +189,7 @@
   /* --- two-column body --- */
   .cs-body{display:grid;grid-template-columns:clamp(220px,24vw,300px) 1fr;
     gap:clamp(2rem,5vw,5rem);
-    padding:clamp(2.5rem,6vw,5rem) clamp(1.2rem,5vw,4rem);max-width:1400px;margin:0 auto;
+    padding:clamp(2.5rem,6vw,5rem) clamp(1.8rem,4.5vw,3rem);max-width:1400px;margin:0 auto;
     align-items:start}
 
   /* sticky left nav */
@@ -212,7 +214,7 @@
     box-shadow:0 0 0 4px rgba(224,121,43,.18)}
 
   /* main body */
-  .cs-main{max-width:760px}
+  .cs-main{max-width:900px}
   .cs-meta{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:1.6rem 2rem;
     padding-bottom:2.5rem;margin-bottom:1rem;border-bottom:1px solid var(--paper-line)}
   .cs-meta dt{font-family:var(--display);text-transform:uppercase;letter-spacing:.1em;font-size:.74rem;
@@ -226,10 +228,10 @@
     font-size:.78rem;color:var(--elac-orange);font-weight:600;margin-bottom:1rem}
   .cs-section h2{font-family:var(--display);text-transform:uppercase;font-weight:700;
     font-size:clamp(1.8rem,4vw,2.9rem);line-height:1.02;margin-bottom:1.3rem;letter-spacing:-.005em}
-  .cs-section p{font-size:1.12rem;color:var(--ink-soft);margin-bottom:1.1rem;max-width:60ch}
+  .cs-section p{font-size:1.12rem;color:var(--ink-soft);margin-bottom:1.1rem;max-width:none}
   .cs-section p .lead{color:var(--ink)}
   .placeholder{color:#9a8f7d;font-style:italic}
-  .cs-section .owned-list{list-style:none;counter-reset:owned;margin:0 0 1.6rem;max-width:60ch}
+  .cs-section .owned-list{list-style:none;counter-reset:owned;margin:0 0 1.6rem}
   .cs-section .owned-list li{counter-increment:owned;position:relative;padding-left:2.4rem;
     margin-bottom:1rem;font-size:1.05rem;color:var(--ink-soft);line-height:1.5}
   .cs-section .owned-list li::before{content:counter(owned);position:absolute;left:0;top:.1rem;
@@ -244,7 +246,7 @@
   .metric .lbl{font-size:.92rem;color:var(--ink-soft);margin-top:.4rem}
 
   .cs-figure{margin:2rem 0;border-radius:6px;overflow:hidden;border:1px solid var(--paper-line);
-    box-shadow:0 12px 32px rgba(0,0,0,.1)}
+    box-shadow:0 12px 32px rgba(0,0,0,.1);max-width:75%}
   .cs-figure svg,.cs-figure img{display:block;width:100%}
   .cs-figure.plain{border:none;box-shadow:none;background:transparent}
   .cs-figure.plain img{border-radius:6px}
@@ -321,6 +323,61 @@
   .takeaway p{color:rgba(252,250,248,.85);max-width:none;font-size:1.02rem}
   .takeaway p:last-child{margin-bottom:0}
 
+  /* ============================================================
+     LIGHTBOX
+     ============================================================ */
+  .lb-trigger{cursor:zoom-in}
+  .lb-overlay{
+    display:none;position:fixed;inset:0;z-index:5000;
+    background:rgba(26,23,20,.88);backdrop-filter:blur(6px);
+    align-items:center;justify-content:center;
+    animation:lbFade .25s var(--ease);
+  }
+  .lb-overlay.open{display:flex}
+  @keyframes lbFade{from{opacity:0}to{opacity:1}}
+  .lb-img{
+    max-width:90vw;max-height:88vh;object-fit:contain;
+    border-radius:6px;box-shadow:0 24px 64px rgba(0,0,0,.6);
+    animation:lbScale .28s var(--ease);
+  }
+  @keyframes lbScale{from{transform:scale(.94);opacity:0}to{transform:scale(1);opacity:1}}
+  .lb-close{
+    position:fixed;top:1.4rem;right:1.6rem;
+    font-family:var(--display);font-size:1.6rem;color:var(--cream);
+    background:none;border:none;cursor:pointer;opacity:.75;line-height:1;
+    transition:opacity .2s;
+  }
+  .lb-close:hover{opacity:1}
+
+  /* WIP modal */
+  .wip-overlay{
+    display:flex;position:fixed;inset:0;z-index:6000;
+    background:rgba(26,23,20,.72);
+    align-items:center;justify-content:center;
+    opacity:0;pointer-events:none;
+    transition:opacity .18s ease;
+  }
+  .wip-overlay.open{opacity:1;pointer-events:auto;}
+  .wip-card{
+    background:var(--cream);border-radius:12px;
+    padding:2.4rem 2.8rem;max-width:400px;width:90%;text-align:center;
+    box-shadow:0 24px 64px rgba(0,0,0,.35);
+    animation:lbScale .25s var(--ease);
+    position:relative;
+  }
+  .wip-cat{font-family:var(--display);font-size:.78rem;letter-spacing:.12em;
+    text-transform:uppercase;color:var(--elac-orange);margin-bottom:.8rem}
+  .wip-title{font-family:var(--display);font-size:1.7rem;font-weight:700;
+    color:var(--ink);margin-bottom:.6rem;letter-spacing:-.01em}
+  .wip-msg{font-family:var(--serif);font-size:1.05rem;color:var(--ink-soft);line-height:1.5;margin:0}
+  .wip-close{
+    position:absolute;top:.8rem;right:1rem;
+    font-family:var(--display);font-size:1.4rem;color:var(--ink-soft);
+    background:none;border:none;cursor:pointer;opacity:.6;line-height:1;
+    transition:opacity .2s;
+  }
+  .wip-close:hover{opacity:1}
+
   @media(max-width:860px){
     .cs-body{grid-template-columns:1fr}
     .cs-nav{position:static;margin-bottom:1rem}
@@ -348,7 +405,7 @@
   <!-- ============================ LANDING ============================ -->
   <div class="view active" id="view-landing">
     <div class="landing-hero">
-      <h1>Hi, I'm Donovan, a <span class="hl-green">Human-Centered Product Designer</span> who still enjoys analog modalities — <span class="hl-purple">vinyl records</span>, <span class="hl-blue">film photography</span>, &amp; <span class="hl-red">vintage fashion</span> — in a modern world.</h1>
+      <h1>Hi, I'm Donovan, a <span class="hl-green">Human-Centered Product Designer</span> who still enjoys analog modalities—<span class="hl-purple">vinyl records</span>, <span class="hl-blue">film photography</span>, &amp; <span class="hl-red">vintage fashion</span>—in a modern world.</h1>
       <p class="browse">Browse my shelf:</p>
     </div>
 
@@ -362,7 +419,7 @@
     <section class="cs-splash" aria-labelledby="cs-h1">
       <a href="#" class="back" data-goto="landing">&larr; Back to shelf</a>
       <div class="splash-bg">
-        <img src="images/bysage-splash.jpg" alt="BySage Clothing digital storefront — homepage, add-to-cart confirmation, and product detail page shown together">
+        <img src="images/bysage/bysage-splash.jpg" alt="BySage Clothing digital storefront—homepage, add-to-cart confirmation, and product detail page shown together">
       </div>
     </section>
 
@@ -428,12 +485,12 @@
         <section class="cs-section" id="sec-overview" data-label="Overview">
           <p class="kicker">Overview</p>
           <h2>How can we redesign BySage's website to authentically represent its values and aesthetic?</h2>
-          <p><span class="lead">BySage is a San Diego-based clothing brand built around limited drops and a loyal local following.</span> When we started, the entire brand presence lived solely on Instagram, and the website only opened during launches — so first-time visitors had no way to browse the brand, read its story, or build any connection outside of drop windows.</p>
+          <p><span class="lead">BySage is a San Diego-based clothing brand built around limited drops and a loyal local following.</span> When we started, the entire brand presence lived solely on Instagram, and the website only opened during launches—so first-time visitors had no way to browse the brand, read its story, or build any connection outside of drop windows.</p>
           <p>Our team of four was brought on for a full website redesign. As lead, I owned:</p>
           <ol class="owned-list">
-            <li>The reconstruction of site navigation, visual direction, and design across the product, collections, and home pages — focused on product transparency and brand storytelling.</li>
+            <li>The reconstruction of site navigation, visual direction, and design across the product, collections, and home pages—focused on product transparency and brand storytelling.</li>
             <li>Leading our team through user interviews, design sprints, and usability testing.</li>
-            <li>Proactively ideating with the PM and brand stakeholder — setting sprint goals for the product roadmap and implementing a plan for a viable MVP.</li>
+            <li>Proactively ideating with the PM and brand stakeholder—setting sprint goals for the product roadmap and implementing a plan for a viable MVP.</li>
           </ol>
           <div class="metrics">
             <div class="metric"><div class="big">200%</div><div class="lbl">Increase in Instagram followers</div></div>
@@ -445,7 +502,7 @@
         <section class="cs-section" id="sec-research" data-label="Research">
           <p class="kicker">User Research</p>
           <h2>Listening before designing</h2>
-          <p>We interviewed <span class="lead">23 individuals</span> — from frequent repeat loyalists to potential customers who'd never bought from BySage. We needed that range of perspectives, and it surfaced three main issues:</p>
+          <p>We interviewed <span class="lead">23 individuals</span>—from frequent repeat loyalists to potential customers who'd never bought from BySage. We needed that range of perspectives, and it surfaced three main issues:</p>
 
           <div class="pain-points">
             <div class="pain-point">
@@ -485,7 +542,7 @@
             </div>
           </div>
 
-          <p>That gap between strong brand loyalty and a weak web presence was the core problem — people loved BySage but had nowhere to engage with it between launches.</p>
+          <p>That gap between strong brand loyalty and a weak web presence was the core problem—people loved BySage but had nowhere to engage with it between launches.</p>
 
           <div class="pullquote">
             <p>"Honestly the website is pretty plain compared to the Instagram. You also can't see when the page is locked for new drops, which makes me forget about it sometimes."</p>
@@ -521,33 +578,33 @@
           <h2>Site architecture before pixels</h2>
           <p>Proper site architecture can turn endless scrolling into actionable clicks that lead to increase in sales. Our new structure gave every page a clear place so visitors could browse the brand's identity outside of active drops.</p>
           <figure class="cs-figure plain">
-            <img src="images/bysage-architecture.jpg" alt="BySage site architecture diagram mapping Homepage to Shop, Collections, About Us, and Policies with nested sub-pages" loading="lazy">
-            <figcaption>Full site map — restructuring isolated pages into a clear hierarchy.</figcaption>
+            <img src="images/bysage/bysage-architecture.jpg" alt="BySage site architecture diagram mapping Homepage to Shop, Collections, About Us, and Policies with nested sub-pages" loading="lazy">
+            <figcaption>Full site map—restructuring isolated pages into a clear hierarchy.</figcaption>
           </figure>
         </section>
 
         <section class="cs-section" id="sec-design" data-label="Final Design">
           <p class="kicker">Final Design</p>
           <h2>A mobile-first shopping experience</h2>
-          <p>The product page was rebuilt so customers can see everything that matters before buying — materials, fit, sizing, and reviews — directly addressing the trust gap that surfaced in research.</p>
+          <p>The product page was rebuilt so customers can see everything that matters before buying—materials, fit, sizing, and reviews—directly addressing the trust gap that surfaced in research.</p>
           <div class="phone-row">
             <figure>
-              <img src="images/bysage-product-m1.jpg" alt="BySage mobile product page top: Expedition Hoodie image, price, size and color options, and add-to-cart" loading="lazy">
+              <img src="images/bysage/bysage-product-m1.jpg" alt="BySage mobile product page top: Expedition Hoodie image, price, size and color options, and add-to-cart" loading="lazy">
             </figure>
             <figure>
-              <img src="images/bysage-product-m2.jpg" alt="BySage mobile product page continued: sizing, size chart, and customer reviews" loading="lazy">
+              <img src="images/bysage/bysage-product-m2.jpg" alt="BySage mobile product page continued: sizing, size chart, and customer reviews" loading="lazy">
             </figure>
           </div>
-          <p class="cap-center">Mobile product page with reviews — built to earn first-time-buyer trust where most customers shop.</p>
-          <p>BySage's audience skews young — high school and college students who browse and buy from their phones. Responsive design wasn't optional. We designed mobile-first, then scaled up to desktop, making sure the shopping experience held together across both.</p>
+          <p class="cap-center">Mobile product page with reviews—built to earn first-time-buyer trust where most customers shop.</p>
+          <p>BySage's audience skews young—high school and college students who browse and buy from their phones. Responsive design wasn't optional. We designed mobile-first, then scaled up to desktop, making sure the shopping experience held together across both.</p>
           <figure class="cs-figure plain">
-            <img src="images/bysage-laptop.jpg" alt="BySage homepage redesign on desktop, with a full-bleed brand hero and clear navigation" loading="lazy">
-            <figcaption>Redesigned homepage — an immediate brand impression for cold visitors.</figcaption>
+            <img src="images/bysage/bysage-laptop.jpg" alt="BySage homepage redesign on desktop, with a full-bleed brand hero and clear navigation" loading="lazy">
+            <figcaption>Redesigned homepage—an immediate brand impression for cold visitors.</figcaption>
           </figure>
-          <p>The Collections and About pages turned the brand's history into something visitors could explore year-round. The About page lays out BySage's story as a timeline — from its first ten hoodies in Chula Vista to its present-day drops.</p>
+          <p>The Collections and About pages turned the brand's history into something visitors could explore year-round. The About page lays out BySage's story as a timeline—from its first ten hoodies in Chula Vista to its present-day drops.</p>
           <figure class="cs-figure plain">
-            <img src="images/bysage-about.jpg" alt="BySage About Us page presented as a vertical brand timeline from 2021 through the present" loading="lazy">
-            <figcaption>About Us — a brand timeline that gives visitors a reason to return between drops.</figcaption>
+            <img src="images/bysage/bysage-about.jpg" alt="BySage About Us page presented as a vertical brand timeline from 2021 through the present" loading="lazy">
+            <figcaption>About Us—a brand timeline that gives visitors a reason to return between drops.</figcaption>
           </figure>
         </section>
 
@@ -576,7 +633,7 @@
           <p class="kicker">Results</p>
           <h2>Where did we end up?</h2>
           <p>Giving BySage a persistent home drove engagement even outside of launch windows. After the redesign direction launched, the brand saw a <span class="lead">200% increase in Instagram followers</span>, sold out its <span class="lead">Spring 2024 collection within three minutes</span>, and saw a <span class="lead">20%+ lift in traffic</span> during drops.</p>
-          <p>Beyond the metrics, the founder could finally point people to a real website that represented his brand — not just an Instagram page that went dark between drops.</p>
+          <p>Beyond the metrics, the founder could finally point people to a real website that represented his brand—not just an Instagram page that went dark between drops.</p>
           <div class="pullquote">
             <p>"Donovan immediately grasped and embraced our brand's vision, understanding the unique challenges of establishing trust and credibility for an emerging fashion brand. His redesign of the website not only improved navigation and usability but also significantly enhanced customer trust and engagement. His contributions have left a lasting impact on our brand's growth and reputation."</p>
             <cite>— Cameron Pitel, Founder of BySage</cite>
@@ -588,9 +645,299 @@
           <h2>What I took away</h2>
           <div class="takeaway">
             <h3>Designing within real constraints</h3>
-            <p>One of the most valuable skills I built was developing a product under a real business's constraints. As designers we often shoot for the stars, but this project grounded me — the goal was a site that was accessible, feasible, and genuinely buildable for our client, not just impressive in a portfolio.</p>
+            <p>One of the most valuable skills I built was developing a product under a real business's constraints. As designers we often shoot for the stars, but this project grounded me—the goal was a site that was accessible, feasible, and genuinely buildable for our client, not just impressive in a portfolio.</p>
             <p>If I had more time, I'd push harder on the shopping flow itself. We focused our energy on the homepage, navigation, and brand identity; the product detail, cart, and checkout could have used another round of testing. That's where I'd go next.</p>
           </div>
+        </section>
+      </article>
+    </div>
+  </div>
+
+  <!-- ====================== INPUT MATTERS ======================== -->
+  <div class="view" id="view-case-robotics">
+    <section class="cs-splash" aria-labelledby="im-h1">
+      <a href="#" class="back" data-goto="landing">&larr; Back to shelf</a>
+      <div class="splash-bg">
+        <img src="images/input-matters/NOTRE Stretch Splash.png" alt="Stretch RE2 assistive telepresence robot in a cafe environment">
+      </div>
+    </section>
+
+    <div class="cs-intro">
+      <h1 id="im-h1">Input Matters</h1>
+      <p class="tagline">Built a multi-modal interface for an assistive telepresence robot and conducted a 63-participant study to determine which control mode is the most intuitive and accessible.</p>
+    </div>
+
+    <div class="cs-body">
+      <!-- ---------- STICKY LEFT NAV ---------- -->
+      <aside class="cs-nav" aria-label="Case study sections">
+        <div class="turntable-box">
+          <svg class="turntable" viewBox="0 0 240 240" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <rect x="8" y="8" width="224" height="224" rx="14" fill="#1A1714"/>
+            <rect x="8" y="8" width="224" height="224" rx="14" fill="none" stroke="#E0792B" stroke-width="1.5" opacity=".5"/>
+            <circle cx="104" cy="124" r="86" fill="#0d0b09"/>
+            <circle cx="104" cy="124" r="86" fill="none" stroke="#332d27" stroke-width="1"/>
+            <circle cx="104" cy="124" r="74" fill="#15120f"/>
+            <g stroke="#2a2622" stroke-width="1" fill="none" opacity=".8">
+              <circle cx="104" cy="124" r="66"/><circle cx="104" cy="124" r="58"/>
+              <circle cx="104" cy="124" r="50"/><circle cx="104" cy="124" r="42"/>
+            </g>
+            <circle cx="104" cy="124" r="30" fill="#E0792B"/>
+            <circle cx="104" cy="124" r="3.5" fill="#FCFAF8"/>
+            <text x="104" y="112" text-anchor="middle" font-family="Oswald,sans-serif" font-size="8.5" fill="#FCFAF8" font-weight="600" letter-spacing=".5">BN-2401</text>
+            <text x="104" y="143" text-anchor="middle" font-family="Oswald,sans-serif" font-size="6.5" fill="#FCFAF8" opacity=".8">33⅓ RPM</text>
+            <g id="tonearm-im" style="transform-box:fill-box;transform-origin:0% 0%">
+              <circle cx="200" cy="60" r="13" fill="#2a2622" stroke="#E0792B" stroke-width="1.5"/>
+              <circle cx="200" cy="60" r="4" fill="#E0792B"/>
+              <g id="arm-rot-im">
+                <line x1="200" y1="60" x2="150" y2="150" stroke="#c9c2b6" stroke-width="4.5" stroke-linecap="round"/>
+                <rect x="142" y="146" width="16" height="11" rx="2" fill="#1A1714" transform="rotate(60 150 150)"/>
+              </g>
+            </g>
+            <text x="150" y="225" text-anchor="middle" font-family="Oswald,sans-serif" font-size="8" fill="#7a7066" letter-spacing=".1em">PROGRESS</text>
+          </svg>
+        </div>
+        <ul class="nav-list" id="navList-im"></ul>
+      </aside>
+
+      <!-- ---------- MAIN BODY ---------- -->
+      <article class="cs-main">
+        <dl class="cs-meta">
+          <div><dt>Role</dt><dd>Human Factors Designer &amp; Researcher</dd></div>
+          <div><dt>Team</dt><dd class="team-list"><span>2 Designers</span><span>5 Engineers</span></dd></div>
+          <div><dt>Skills</dt><dd>User Research · UI Design · Interaction Logic · Experimental Design</dd></div>
+          <div><dt>Tools</dt><dd>Figma</dd></div>
+        </dl>
+
+        <section class="cs-section" id="im-overview" data-label="Overview">
+          <p class="kicker">Overview</p>
+          <h2>How do you give someone their independence back?</h2>
+          <p><span class="lead">Chronic illnesses create barriers that prevent people from completing everyday tasks.</span> The Contextual Robotics Institute is home to many labs that build telepresence robots providing people both <em>assistance</em> and <em>agency</em>—ensuring humans still retain a Sense of Control (SoC) when operating. With my colleagues at the UCSD Healthcare Robotics Lab, we designed a system for the Stretch RE2 Robot so that novice users can still complete their daily tasks.</p>
+          <p class="kicker" style="margin-top:2rem">Background</p>
+          <p>Stretch is a teleoperated assistive robot with unique physiology. It has a base, an arm positioned perpendicular to its base with a wrist and gripper, and two wide field-of-view cameras: an <span class="lead">arm camera</span> that gives users a clear line of sight when manipulating objects in space, and a <span class="lead">base camera</span> positioned at the top of the robot used during navigation mode. We installed a tablet near the robot's head to display the operator's face—promoting social interaction and enabling audio-visual communication between the operator and others in Stretch's environment.</p>
+          <figure class="cs-figure plain">
+            <img src="images/input-matters/NOTRE Stretch Diagram.jpg" alt="Diagram of the Stretch RE2 robot with labeled components: base, arm, wrist, gripper, arm camera, base camera, and face tablet" loading="lazy">
+          </figure>
+        </section>
+        <section class="cs-section" id="im-audit" data-label="Design Audit">
+          <p class="kicker">Design Audit</p>
+          <h2>Conducting A Design Audit</h2>
+          <p>Before prototyping, we audited the previous ideations our lab has developed and shipped since 2023. Across all versions, two issues were identified:</p>
+
+          <div class="issue-block" style="margin-top:2rem">
+            <h4>Issue 01—Unstandardized Design System</h4>
+            <p>Inconsistent visual style guides and components that did not intuitively translate interaction logic or Stretch's physical attributes.</p>
+            <div class="fig-row" style="margin-top:1.2rem">
+              <figure class="cs-figure plain" style="margin:0">
+                <img src="images/input-matters/NOTRE Old UI 1.png" alt="Previous Stretch UI iteration 1 showing inconsistent visual design" loading="lazy">
+              </figure>
+              <figure class="cs-figure plain" style="margin:0">
+                <img src="images/input-matters/NOTRE Old UI 2.png" alt="Previous Stretch UI iteration 2 showing inconsistent components" loading="lazy">
+              </figure>
+            </div>
+          </div>
+
+          <div class="issue-block" style="margin-top:2.5rem">
+            <h4>Issue 02—Opaque Controls &amp; Layout</h4>
+            <p>Components overlaid onto the camera feed weren't transparent and were arranged randomly, blocking the user's line of sight.</p>
+            <div class="fig-row" style="margin-top:1.2rem">
+              <figure class="cs-figure plain" style="margin:0">
+                <img src="images/input-matters/NOTRE Old UI 3.png" alt="Previous Stretch UI showing opaque controls blocking camera feed" loading="lazy">
+              </figure>
+              <figure class="cs-figure plain" style="margin:0">
+                <img src="images/input-matters/NOTRE Stretch Hello Robot UI.gif" alt="Animated gif of previous Stretch Hello Robot UI with obstructed camera view" loading="lazy">
+              </figure>
+            </div>
+          </div>
+        </section>
+        <section class="cs-section" id="im-ideating" data-label="Ideating">
+          <p class="kicker">Ideating</p>
+          <h2>Divide and Conquer</h2>
+          <p>The existing Stretch system supported two modes of operation: navigating Stretch through space and manipulating objects with its arm. We continued that direction—updating Navigation and Manipulation as separate tabs that users can toggle between.</p>
+          <div class="fig-row">
+            <figure class="cs-figure plain" style="margin:0">
+              <img src="images/input-matters/NOTRE Ideating 1.png" alt="Early wireframe ideation for Stretch navigation mode tab layout" loading="lazy">
+            </figure>
+            <figure class="cs-figure plain" style="margin:0">
+              <img src="images/input-matters/NOTRE Ideating 2.png" alt="Early wireframe ideation for Stretch manipulation mode tab layout" loading="lazy">
+            </figure>
+          </div>
+
+          <div class="issue-block" style="margin-top:2.5rem">
+            <h4>Issue 01—Standardizing the Design System</h4>
+            <p>Previous iterations were plagued with inconsistencies: different icons, varying text sizes, and vague controls. We threw out that playbook and introduced a standardized Visual Style Guide and Component Library in compliance with Web Content Accessibility Guidelines (WCAG)—intuitive in both form and function.</p>
+            <figure class="cs-figure plain" style="margin-top:1.2rem">
+              <img src="images/input-matters/Navigation Components.png" alt="Standardized navigation mode component library" loading="lazy">
+            </figure>
+            <figure class="cs-figure plain" style="margin-top:1rem">
+              <img src="images/input-matters/Manipulation Components.png" alt="Standardized manipulation mode component library" loading="lazy">
+            </figure>
+            <figure class="cs-figure plain" style="margin-top:1rem">
+              <img src="images/input-matters/Visual Style Guide_ Typography.png" alt="Visual style guide showing typography standards" loading="lazy">
+            </figure>
+          </div>
+
+          <div class="issue-block" style="margin-top:2.5rem">
+            <h4>Issue 02—Increasing Visibility</h4>
+            <p>We made the overlaid controls transparent so Stretch's camera feed—and the user's line of sight—stayed clear.</p>
+            <figure class="cs-figure plain" style="margin-top:1.2rem">
+              <img src="images/input-matters/X-Box (Manipulation - Non Depth).png" alt="Stretch manipulation mode UI with transparent controls overlaid on camera feed" loading="lazy">
+            </figure>
+          </div>
+        </section>
+        <section class="cs-section" id="im-crossplatform" data-label="Cross-Platform">
+          <p class="kicker">Cross-Platform</p>
+          <h2>What if Mouse &amp; Key are not the right tools for the job?</h2>
+          <p>While debriefing our initial findings and literature review, we posed a new question: are there other control modalities that offer more intuitive operation and a stronger Sense of Control?</p>
+          <p>Fortunately, video games had already solved this. Many popular game developers ship cross-platform compatibility—connecting players regardless of whether they're on console, PC, or mobile. Our initial scope broadened from designing a single interface to researching how different interaction modalities create a better user experience.</p>
+          <div class="fig-row">
+            <figure class="cs-figure plain" style="margin:0">
+              <img src="images/input-matters/NOTRE Minecraft UI Console.png" alt="Minecraft Xbox console controller interface" loading="lazy">
+              <figcaption>Console</figcaption>
+            </figure>
+            <figure class="cs-figure plain" style="margin:0">
+              <img src="images/input-matters/NOTRE Minecraft UI PC.png" alt="Minecraft PC keyboard and mouse interface" loading="lazy">
+              <figcaption>PC</figcaption>
+            </figure>
+          </div>
+          <figure class="cs-figure plain">
+            <img src="images/input-matters/NOTRE Three Modalities.jpg" alt="The three control modalities: Mouse, Gamepad, and Haptic Omni Stylus" loading="lazy">
+            <figcaption>The three control modalities: Mouse &amp; Keyboard, Gamepad, and Haptic Omni Stylus.</figcaption>
+          </figure>
+
+          <p class="kicker" style="margin-top:2.5rem">Cross Platform Design</p>
+          <h2>How can we design a system that provides consistency across all three modalities: Mouse, Gamepad, and Haptic Omni Stylus?</h2>
+
+          <div class="issue-block" style="margin-top:2rem">
+            <h4>01—Modality-Specific Icons for Visual Feedback</h4>
+            <p>Standardizing the design system helped users visualize Stretch's physical attributes, but each modality had different interaction logic. Modality-specific icons served as indicators alongside function labels—Mouse users drag sliders, Gamepad users see controller button icons, and Omni users see hand gestures within a 3D space.</p>
+            <div style="margin-top:1.2rem;display:flex;flex-direction:column;gap:1.4rem">
+              <figure class="cs-figure plain" style="margin:0">
+                <img src="images/input-matters/Tele-Inclusion Tutorial - Mouse Interface.gif" alt="Tutorial GIF demonstrating mouse control modality icons" loading="lazy">
+                <figcaption>Mouse &amp; Keyboard</figcaption>
+              </figure>
+              <figure class="cs-figure plain" style="margin:0">
+                <img src="images/input-matters/Tele-Inclusion Tutorial - Xbox Interface.gif" alt="Tutorial GIF demonstrating gamepad control modality icons" loading="lazy">
+                <figcaption>Gamepad</figcaption>
+              </figure>
+              <figure class="cs-figure plain" style="margin:0">
+                <img src="images/input-matters/Tele-Inclusion Tutorial - Omni Interface.gif" alt="Tutorial GIF demonstrating Haptic Omni Stylus control modality icons" loading="lazy">
+                <figcaption>Haptic Omni Stylus</figcaption>
+              </figure>
+            </div>
+          </div>
+
+          <div class="issue-block" style="margin-top:2.5rem">
+            <h4>02—Testing Light vs. Dark Mode</h4>
+            <p>We pushed both styles, tested them with colleagues, and landed on Dark Mode—it provided clearer legibility and reduced mental fatigue, our biggest concern for novice users operating Stretch for the first time.</p>
+            <figure class="cs-figure plain" style="margin-top:1.2rem">
+              <img src="images/input-matters/NOTRE Dark vs Light Mode.png" alt="Side-by-side comparison of light mode and dark mode Stretch interface" loading="lazy">
+            </figure>
+          </div>
+
+          <div class="issue-block" style="margin-top:2.5rem">
+            <h4>03—Redesigning Components for 3D Motion</h4>
+            <p>Our original arrow component didn't convey Stretch's arm moving through three axes. A new slider component unique to the arm's motion gave users a clearer sense of how their inputs translated to Stretch's physical movements.</p>
+            <figure class="cs-figure plain" style="margin-top:1.2rem">
+              <img src="images/input-matters/Tele-Inclusion Tutorial - Mouse Interface (Arm Extend).gif" alt="Animated GIF of the new arm slider component showing arm extension motion" loading="lazy">
+            </figure>
+          </div>
+        </section>
+        <section class="cs-section" id="im-finaldesigns" data-label="Final Designs">
+          <p class="kicker">Final Designs</p>
+          <h2>One System, Two Modes, Three Control Modalities</h2>
+          <p>For each modality, our system provides visual feedback via Stretch's camera feeds and transparent control components that emphasize text legibility <span class="lead">[1]</span>. The modality icon <span class="lead">[2]</span> changes as users switch between controls. A miniature 3D model <span class="lead">[3]</span> shows Stretch's current orientation across three axes. The thumbnail <span class="lead">[4]</span> in the top left displays the arm camera's POV in Navigation mode and switches to the base camera's POV in Manipulation mode <span class="lead">[5]</span>. The top-right module <span class="lead">[6]</span> lets users pan the base camera in either mode.</p>
+          <ol class="owned-list">
+            <li>In Navigation Mode, move Stretch through terrain while monitoring the surrounding environment for obstructions.</li>
+            <li>In Manipulation Mode, control Stretch's arm while using the base camera thumbnail to ensure the gripper path is clear.</li>
+          </ol>
+          <figure class="cs-figure plain">
+            <img src="images/input-matters/NOTRE Final Designs Annotated.png" alt="Annotated final design of the Stretch interface showing labeled callouts 1 through 6 across navigation and manipulation modes" loading="lazy">
+          </figure>
+
+          <p class="kicker" style="margin-top:2.5rem">Preventing Slips and Errors</p>
+          <p>Even experienced users can slip during task completion. We designed a control reference guide for each modality that users can toggle open at any time while operating Stretch.</p>
+          <div class="fig-row">
+            <figure class="cs-figure plain" style="margin:0">
+              <img src="images/input-matters/XBOX Cheat Sheet_ Base Control.png" alt="Xbox gamepad cheat sheet for base navigation controls" loading="lazy">
+              <figcaption>Base Control</figcaption>
+            </figure>
+            <figure class="cs-figure plain" style="margin:0">
+              <img src="images/input-matters/XBOX Cheat Sheet_ Arm Control.png" alt="Xbox gamepad cheat sheet for arm manipulation controls" loading="lazy">
+              <figcaption>Arm Control</figcaption>
+            </figure>
+          </div>
+        </section>
+        <section class="cs-section" id="im-study" data-label="Study">
+          <p class="kicker">Study</p>
+          <h2>Conducting a 63-participant study in a cafe</h2>
+          <p>We ran a mixed-methods study to determine which control modality our <span class="lead">63 participants</span> preferred across <span class="lead">130+ testing hours</span>. The study spanned two locations: an <span class="lead">Operation Room</span> where participants remotely controlled Stretch, and a <span class="lead">Cafe</span> where Stretch operated alongside a researcher posing as a customer and another acting as cafe staff.</p>
+          <figure class="cs-figure plain">
+            <img src="images/input-matters/NOTRE Operating Room Set Up 2.png" alt="Operation room computer and control setup for the study" loading="lazy">
+          </figure>
+          <p>Each participant was randomly assigned a modality, completed a training module, then ran a combination of navigation and manipulation tasks—handing a customer their menu, retrieving their order, and placing it on the coffee table.</p>
+          <figure class="cs-figure plain">
+            <img src="images/input-matters/NOTRE Usability Testing Handoff.jpeg" alt="Researcher and Stretch robot in the cafe during the usability study" loading="lazy">
+          </figure>
+          <p>After completing the tasks, participants filled out a demographics form and a questionnaire measuring four dimensions:</p>
+          <ol class="owned-list">
+            <li><a href="https://humansystems.arc.nasa.gov/groups/tlx/" target="_blank" rel="noopener" style="color:var(--bn-red);text-decoration:none;border-bottom:1px solid currentColor">NASA Task Load Index (TLX)</a>—How demanding the task felt</li>
+            <li><a href="https://www.usability.gov/how-to-and-tools/methods/system-usability-scale.html" target="_blank" rel="noopener" style="color:var(--bn-red);text-decoration:none;border-bottom:1px solid currentColor">System Usability Scale (SUS)</a>—How easy the interface was to operate overall</li>
+            <li><a href="#" style="color:var(--bn-red);text-decoration:none;border-bottom:1px solid currentColor">Perceived Safety (PS) scale</a>—How participants felt when operating Stretch</li>
+            <li><a href="#" style="color:var(--bn-red);text-decoration:none;border-bottom:1px solid currentColor">Sense of Control (SoC) scale</a>—How much control participants felt they had over the robot</li>
+          </ol>
+          <p>Participants also answered open-ended questions about their experience with the system and their opinions on automation.</p>
+        </section>
+        <section class="cs-section" id="im-results" data-label="Results">
+          <p class="kicker">Results</p>
+          <h2>Mouse outperformed Gamepad and Omni</h2>
+          <p>We analyzed all recorded video and audio data and used <span class="lead">multiple linear regression (MLR)</span> to assess the impact of control devices on task performance and SoC. We found SoC scores significantly correlated with completion rate and total task time.</p>
+          <div class="metrics">
+            <div class="metric">
+              <div class="big">6.5<span style="font-size:2rem">/10</span></div>
+              <div class="lbl">Mouse users' average Sense of Control—the highest of the three modalities</div>
+            </div>
+            <div class="metric">
+              <div class="big">~2x</div>
+              <div class="lbl">Longer manipulation tasks took with Gamepad/Omni vs. Mouse (9–12.5 min vs. 5 min 54s)</div>
+            </div>
+            <div class="metric">
+              <div class="big">63.8<span style="font-size:2rem">/100</span></div>
+              <div class="lbl">Mouse's System Usability Scale (SUS) score—the highest of the three</div>
+            </div>
+            <div class="metric">
+              <div class="big">29.8</div>
+              <div class="lbl">Mouse's NASA-TLX cognitive load score—the lowest, meaning the least mentally taxing</div>
+            </div>
+          </div>
+        </section>
+        <section class="cs-section" id="im-reflection" data-label="Reflection">
+          <p class="kicker">Reflection</p>
+          <h2>Wearing many hats</h2>
+
+          <div class="principle" style="margin-bottom:1.2rem">
+            <div class="pn">01</div>
+            <h4>Scope creep is a feature, not a bug</h4>
+            <p>My role expanded well beyond UI design—and that was the right call. As the study evolved, so did my responsibilities. Every time the work needed something, I followed it there.</p>
+          </div>
+
+          <div class="principle" style="margin-bottom:1.2rem">
+            <div class="pn">02</div>
+            <h4>Designing meant doing</h4>
+            <p>I owned the interaction logic for all three modalities, scripted and produced tutorial videos so participants could onboard consistently, and contributed to experimental design decisions I hadn't anticipated at the start.</p>
+          </div>
+
+          <div class="principle" style="margin-bottom:2rem">
+            <div class="pn">03</div>
+            <h4>Close the Figma file when the problem asks you to</h4>
+            <p>The designers and researchers who add the most value are the ones willing to follow the problem wherever it goes—even when that means stepping away from Unity.</p>
+          </div>
+
+          <p>Fortunately, our work was recognized and published in the <a href="https://humanrobotinteraction.org/2026/" target="_blank" rel="noopener" style="color:var(--bn-red);text-decoration:none;border-bottom:1px solid currentColor">2026 HRI: ACM/IEEE International Conference on Human-Robot Interaction</a>.</p>
+
+          <figure class="cs-figure plain" style="margin-top:2rem;max-width:360px;margin-left:auto;margin-right:auto">
+            <img src="images/input-matters/NOTRE Me and Stretch.png" alt="Donovan posing with the Stretch RE2 robot" loading="lazy">
+            <figcaption style="text-align:center">me and stretch 🤞</figcaption>
+          </figure>
         </section>
       </article>
     </div>
@@ -601,29 +948,29 @@
 
 <script>
 /* ============================================================
-   DATA — single source of truth (will become data.js)
+   DATA—single source of truth (will become data.js)
    ============================================================ */
 const PROJECTS = [
   {id:'robotics', cat:'BN-2401', title:'Input Matters', role:'Human Factors Designer & Researcher',
    label:'#E0792B', cover:'robotics',
-   pitch:'[One-sentence pitch: what this case study is about and the outcome.]'},
+   pitch:'Designed three control interfaces for an assistive telepresence robot and ran a 63-participant study to find which modality is most intuitive—published at HRI 2026.'},
   {id:'bysage', cat:'BN-2402', title:'BySage', role:'Lead Product Designer & Researcher',
    label:'#C2391F', cover:'bysage',
    pitch:'Turning a drop-based streetwear brand into a year-round shopping experience through research-led redesign.'},
   {id:'kp', cat:'BN-2403', title:'Kaibigang Pilipino', role:'Head of Design',
    label:'#1F5FA8', cover:'kp',
-   pitch:'[One-sentence pitch: what this case study is about and the outcome.]'},
+   pitch:'Led a team of 10 designers to build KP\'s design system and launch a gamified membership portal—boosting site engagement by 250% and event attendance by 50%.'},
   {id:'acm', cat:'BN-2404', title:'ACM at UCSD', role:'UX Designer',
    label:'#2E7D52', cover:'acm',
-   pitch:'[One-sentence pitch: what this case study is about and the outcome.]'},
-  {id:'nexgen', cat:'BN-2405', title:'NexGen', role:'[Role]',
+   pitch:'Built and maintained scalable design systems for a 2,000+ member organization while restructuring information architecture to increase site engagement by 35%.'},
+  {id:'nexgen', cat:'BN-2405', title:'NexGen', role:'Product Designer',
    label:'#6D3DBE', cover:'nexgen',
-   pitch:'[One-sentence pitch: what this case study is about and the outcome.]'},
+   pitch:'Designed and developed NexGen\'s original website and internal CMS—a core design framework that outlasted the company\'s rebrand to ShipNomad.'},
 ];
 
 /* Sections drive the nav. Only those with `done:true` (real content)
    appear in the left nav and get a tonearm stop. Empty sections stay
-   hidden until you fill them in — then flip the flag (or, in the CMS,
+   hidden until you fill them in—then flip the flag (or, in the CMS,
    the section simply won't render until it has a body). */
 const SECTIONS = [
   {id:'sec-overview',     label:'Overview',          done:true},
@@ -637,6 +984,19 @@ const SECTIONS = [
 ];
 // Sections actually shown in nav + tracked for scroll
 const ACTIVE_SECTIONS = SECTIONS.filter(s=>s.done);
+
+/* Input Matters sections */
+const SECTIONS_IM = [
+  {id:'im-overview',     label:'Overview',       done:true},
+  {id:'im-audit',        label:'Design Audit',   done:true},
+  {id:'im-ideating',     label:'Ideating',       done:true},
+  {id:'im-crossplatform',label:'Cross-Platform', done:true},
+  {id:'im-finaldesigns', label:'Final Designs',  done:true},
+  {id:'im-study',        label:'Study',          done:true},
+  {id:'im-results',      label:'Results',        done:true},
+  {id:'im-reflection',   label:'Reflection',     done:true},
+];
+const ACTIVE_SECTIONS_IM = SECTIONS_IM.filter(s=>s.done);
 
 /* ---- original mid-century SVG cover art (swappable later) ---- */
 function coverArt(kind){
@@ -687,7 +1047,7 @@ PROJECTS.forEach(p=>{
   const card = document.createElement('button');
   card.className='album';
   card.setAttribute('role','listitem');
-  card.setAttribute('aria-label',`${p.title} — ${p.role}. View case study.`);
+  card.setAttribute('aria-label',`${p.title}—${p.role}. View case study.`);
   card.dataset.id=p.id;
   card.innerHTML=`
     <div class="sleeve-wrap">
@@ -706,26 +1066,30 @@ PROJECTS.forEach(p=>{
     // In the real build each card routes to /case/<id>.html.
     // In this preview, only BySage is built out.
     if(p.id==='bysage'){ showView('case'); }
-    else { alert(`"${p.title}" routes to its own case study page in the full build.\nBySage is the one fully built out in this preview.`); }
+    else if(p.id==='robotics'){ showView('case-robotics'); }
+    else { openWip(p); }
   });
   crate.appendChild(card);
 });
 
 /* ============================================================
-   RENDER NAV LIST
+   RENDER NAV LISTS
    ============================================================ */
-const navList = document.getElementById('navList');
-ACTIVE_SECTIONS.forEach((s,i)=>{
-  const li=document.createElement('li');
-  li.innerHTML=`<a href="#${s.id}" data-target="${s.id}">
-      <span class="dot"></span><span class="num">${String(i+1).padStart(2,'0')}</span>${s.label}</a>`;
-  navList.appendChild(li);
-});
-// Hide section blocks that aren't marked done (so the body matches the nav)
-SECTIONS.filter(s=>!s.done).forEach(s=>{
-  const el=document.getElementById(s.id);
-  if(el) el.style.display='none';
-});
+function renderNav(listId, sections, activeSections){
+  const navList = document.getElementById(listId);
+  activeSections.forEach((s,i)=>{
+    const li=document.createElement('li');
+    li.innerHTML=`<a href="#${s.id}" data-target="${s.id}">
+        <span class="dot"></span><span class="num">${String(i+1).padStart(2,'0')}</span>${s.label}</a>`;
+    navList.appendChild(li);
+  });
+  sections.filter(s=>!s.done).forEach(s=>{
+    const el=document.getElementById(s.id);
+    if(el) el.style.display='none';
+  });
+}
+renderNav('navList', SECTIONS, ACTIVE_SECTIONS);
+renderNav('navList-im', SECTIONS_IM, ACTIVE_SECTIONS_IM);
 
 /* ============================================================
    VIEW SWITCHING (preview shim for routing)
@@ -742,24 +1106,11 @@ document.querySelectorAll('[data-goto]').forEach(el=>{
 /* ============================================================
    SCROLL-LINKED TONEARM + SECTION HIGHLIGHT
    ============================================================ */
-const arm = document.getElementById('arm-rot');
-const navLinks = [...document.querySelectorAll('.nav-list a')];
-const sections = ACTIVE_SECTIONS.map(s=>document.getElementById(s.id));
-
-// tonearm sweeps from rest to inner groove; END reached when the LAST
-// section (Reflection) becomes active — not at the very bottom of the page
 const REST = -4, END = 11;
 
-function onScroll(){
-  const caseView = document.getElementById('view-case');
-  if(!caseView.classList.contains('active')) return;
+function driveArm(armEl, navLinks, sections){
   if(!sections.length) return;
-
-  // active threshold line: 40% down the viewport
   const threshold = window.innerHeight*0.4;
-
-  // progress is anchored between the first section reaching the threshold
-  // and the LAST section reaching it — so the arm lands at END on Reflection
   const firstTop = sections[0].getBoundingClientRect().top + window.scrollY;
   const lastTop  = sections[sections.length-1].getBoundingClientRect().top + window.scrollY;
   const startScroll = firstTop - threshold;
@@ -767,20 +1118,91 @@ function onScroll(){
   const span = Math.max(1, endScroll - startScroll);
   const prog = Math.min(1, Math.max(0,(window.scrollY - startScroll)/span));
   const angle = REST + (END-REST)*prog;
-  arm.style.transform=`rotate(${angle}deg)`;
-  arm.style.transformOrigin='200px 60px';
-
-  // active section
+  armEl.style.transform=`rotate(${angle}deg)`;
+  armEl.style.transformOrigin='200px 60px';
   let activeIdx=0;
-  sections.forEach((sec,i)=>{
-    const r=sec.getBoundingClientRect();
-    if(r.top <= threshold) activeIdx=i;
-  });
+  sections.forEach((sec,i)=>{ if(sec.getBoundingClientRect().top <= threshold) activeIdx=i; });
   navLinks.forEach((a,i)=>a.classList.toggle('active',i===activeIdx));
+}
+
+function onScroll(){
+  if(document.getElementById('view-case').classList.contains('active')){
+    const arm = document.getElementById('arm-rot');
+    const links = [...document.querySelectorAll('#navList a')];
+    const secs  = ACTIVE_SECTIONS.map(s=>document.getElementById(s.id));
+    driveArm(arm, links, secs);
+  }
+  if(document.getElementById('view-case-robotics').classList.contains('active')){
+    const arm = document.getElementById('arm-rot-im');
+    const links = [...document.querySelectorAll('#navList-im a')];
+    const secs  = ACTIVE_SECTIONS_IM.map(s=>document.getElementById(s.id));
+    driveArm(arm, links, secs);
+  }
 }
 window.addEventListener('scroll',onScroll,{passive:true});
 window.addEventListener('resize',onScroll);
 onScroll();
+
+/* ============================================================
+   LIGHTBOX
+   ============================================================ */
+const lbOverlay = document.createElement('div');
+lbOverlay.className='lb-overlay';
+lbOverlay.innerHTML='<button class="lb-close" aria-label="Close image">&#x2715;</button><img class="lb-img" src="" alt="">';
+document.body.appendChild(lbOverlay);
+
+const lbImg = lbOverlay.querySelector('.lb-img');
+const lbClose = lbOverlay.querySelector('.lb-close');
+
+function openLightbox(src, alt){
+  lbImg.src=src; lbImg.alt=alt;
+  lbOverlay.classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function closeLightbox(){
+  lbOverlay.classList.remove('open');
+  document.body.style.overflow='';
+}
+
+// Wire up all case study images (exclude album cover SVGs and turntable)
+document.querySelectorAll('.cs-figure img, .fig-row img, .phone-row img, .principles img').forEach(img=>{
+  img.classList.add('lb-trigger');
+  img.addEventListener('click',()=>openLightbox(img.src, img.alt));
+});
+
+lbOverlay.addEventListener('click', e=>{ if(e.target===lbOverlay) closeLightbox(); });
+lbClose.addEventListener('click', closeLightbox);
+document.addEventListener('keydown', e=>{ if(e.key==='Escape'){ closeLightbox(); closeWip(); } });
+
+/* ============================================================
+   WIP MODAL
+   ============================================================ */
+const wipOverlay = document.createElement('div');
+wipOverlay.className='wip-overlay';
+wipOverlay.innerHTML=`
+  <div class="wip-card" role="dialog" aria-modal="true">
+    <button class="wip-close" aria-label="Close">&times;</button>
+    <div class="wip-cat" id="wip-cat"></div>
+    <div class="wip-title" id="wip-title"></div>
+    <p class="wip-msg" id="wip-msg"></p>
+  </div>`;
+document.body.appendChild(wipOverlay);
+
+function openWip(project){
+  wipOverlay.querySelector('#wip-cat').textContent = project.cat;
+  wipOverlay.querySelector('#wip-title').textContent = project.title;
+  wipOverlay.querySelector('#wip-msg').textContent =
+    `${project.title} is currently being built! Come back soon! — Donovan :)`;
+  wipOverlay.classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function closeWip(){
+  wipOverlay.classList.remove('open');
+  document.body.style.overflow='';
+}
+
+wipOverlay.addEventListener('click', e=>{ if(e.target===wipOverlay) closeWip(); });
+wipOverlay.querySelector('.wip-close').addEventListener('click', closeWip);
 </script>
 </body>
 </html>
