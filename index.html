@@ -328,12 +328,13 @@
      ============================================================ */
   .lb-trigger{cursor:zoom-in}
   .lb-overlay{
-    display:none;position:fixed;inset:0;z-index:5000;
-    background:rgba(26,23,20,.88);backdrop-filter:blur(6px);
+    display:flex;position:fixed;inset:0;z-index:5000;
+    background:rgba(26,23,20,.88);
     align-items:center;justify-content:center;
-    animation:lbFade .25s var(--ease);
+    opacity:0;pointer-events:none;
+    transition:opacity .18s ease;
   }
-  .lb-overlay.open{display:flex}
+  .lb-overlay.open{opacity:1;pointer-events:auto;}
   @keyframes lbFade{from{opacity:0}to{opacity:1}}
   .lb-img{
     max-width:90vw;max-height:88vh;object-fit:contain;
@@ -812,15 +813,21 @@
             <p>Standardizing the design system helped users visualize Stretch's physical attributes, but each modality had different interaction logic. Modality-specific icons served as indicators alongside function labels—Mouse users drag sliders, Gamepad users see controller button icons, and Omni users see hand gestures within a 3D space.</p>
             <div style="margin-top:1.2rem;display:flex;flex-direction:column;gap:1.4rem">
               <figure class="cs-figure plain" style="margin:0">
-                <img src="images/input-matters/Tele-Inclusion Tutorial - Mouse Interface.gif" alt="Tutorial GIF demonstrating mouse control modality icons" loading="lazy">
+                <video autoplay loop muted playsinline style="width:100%;border-radius:6px">
+                  <source src="images/input-matters/Tele-Inclusion Tutorial - Mouse Interface.mp4" type="video/mp4">
+                </video>
                 <figcaption>Mouse &amp; Keyboard</figcaption>
               </figure>
               <figure class="cs-figure plain" style="margin:0">
-                <img src="images/input-matters/Tele-Inclusion Tutorial - Xbox Interface.gif" alt="Tutorial GIF demonstrating gamepad control modality icons" loading="lazy">
+                <video autoplay loop muted playsinline style="width:100%;border-radius:6px">
+                  <source src="images/input-matters/Tele-Inclusion Tutorial - Xbox Interface.mp4" type="video/mp4">
+                </video>
                 <figcaption>Gamepad</figcaption>
               </figure>
               <figure class="cs-figure plain" style="margin:0">
-                <img src="images/input-matters/Tele-Inclusion Tutorial - Omni Interface.gif" alt="Tutorial GIF demonstrating Haptic Omni Stylus control modality icons" loading="lazy">
+                <video autoplay loop muted playsinline style="width:100%;border-radius:6px">
+                  <source src="images/input-matters/Tele-Inclusion Tutorial - Omni Interface.mp4" type="video/mp4">
+                </video>
                 <figcaption>Haptic Omni Stylus</figcaption>
               </figure>
             </div>
@@ -838,7 +845,9 @@
             <h4>03—Redesigning Components for 3D Motion</h4>
             <p>Our original arrow component didn't convey Stretch's arm moving through three axes. A new slider component unique to the arm's motion gave users a clearer sense of how their inputs translated to Stretch's physical movements.</p>
             <figure class="cs-figure plain" style="margin-top:1.2rem">
-              <img src="images/input-matters/Tele-Inclusion Tutorial - Mouse Interface (Arm Extend).gif" alt="Animated GIF of the new arm slider component showing arm extension motion" loading="lazy">
+              <video autoplay loop muted playsinline style="width:100%;border-radius:6px">
+                <source src="images/input-matters/Tele-Inclusion Tutorial - Mouse Interface (Arm Extend).mp4" type="video/mp4">
+              </video>
             </figure>
           </div>
         </section>
